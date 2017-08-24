@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Javascript practice</title>
+</head>
+<style>
+  body {
+    font: 16px Helvetica, sans-serif;
+    margin: 0 40px;
+    color: #444;
+  }
+  ol {
+    padding: 0 20px;
+  }
+  ol > li {
+    padding: 20px 25px;
+    border-bottom: 1px dotted #444;
+  }
+  ul {
+    padding: 0;
+    list-style-type: none;
+    font-family: monospace;
+    font-size: 1.1rem;
+    margin-bottom: 12px;
+  }
+</style>
+<body>
+
+<h1>Practice Problems</h1>
+
+<h2>Variable Scopes in JavaScript (1)</h2>
+
+<ol>
+  <li>
+    <ul>
+      <li>'outer'</li>
+      <li>'inner'</li>
+      <li>'outer</li>
+    </ul>
+    Because inner scope is only visible inside function testScope is called, and then inner variable <b>a</b> shadows outer variable <b>a</b>.
+  </li>
+
+  <li>
+    <ul>
+      <li>outer</li>
+      <li>inner</li>
+      <li>inner</li>
+    </ul>
+    Within the function, the global variable <b>a</b> is changed. In the previous example, the keyword <b>var</b> was used to create a new variable, but here it simply accesses the global variable.
+  </li>
+
+  <li>
+    <ul>
+      <li>empty</li>
+      <li>play station</li>
+      <li>computer</li>
+    </ul>
+    The funtion definitions are all hoisted to the top of their scope, but called in order.
+  </li>
+
+  <li>
+    <ul>
+      <li>hello</li>
+    </ul>
+    The variable 'a' is never declared, so JavaScript creates a global variable for it.
+  </li>
+
+  <li>
+    <ul>
+      <li>Uncaught ReferenceError: a is not defined</li>
+    </ul>
+    There is no variable 'a' in the scope where it is logged.
+  </li>
+
+  <li>
+    <ul>
+      <li>undefined</li>
+    </ul>
+    The variable 'a' has been declared, but not assigned a value until after it is logged.
+  </li>
+
+  <li>
+    <ul>
+      <li>Uncaught ReferenceError: a is not defined</li>
+    </ul>
+    hello() is defined, but never called. So 'a' is never assigned a value. It is also never declared. So, we get a ReferenceError.
+  </li>
+</ol>
+
+<h2>Variable Scopes in JavaScript(2)</h2>
+
+<ol>
+  <li>
+    <ul><li>undefined</li></ul>
+    The variable is declared within a block inside the function, so it is hoisted to the top of the function but not assigned.
+  </li>
+
+  <li>
+    
+  </li>
+</ol>
+
+  <script>
+
+var apples = 3;
+var bananas = 1;
+
+var eitherOr = bananas || apples;
+
+console.log(eitherOr);
+
+var areEqual = (apples === bananas);
+
+console.log(areEqual);
+
+if (areEqual) {
+  console.log('Apples and bananas are strictly equal.')
+} else {
+  if (apples == bananas) {
+  console.log('The two are the same number but different types.')
+  } else {
+  console.log('Not equal.')
+  }
+}
+
+var lastName;
+var famiyMessage;
+
+lastName = 'Wilde';
+
+(lastName === 'Wilde') ? familyMessage = "You're part of the family"
+  : familyMessage = "You're not family."
+
+console.log(familyMessage);
+
+function average(array) {
+  return sum(array)/array.length;
+}
+
+function sum(array) {
+  var total = 0
+  for (i = 0, len = array.length ; i < len ; i++) {
+    total += array[i]
+  }
+  return total
+}
+
+var temperatures = [90, 84, 93, 91, 96];
+
+console.log('The average is ' + average(temperatures));
+
+  </script>
+
+</body>
+</html>
