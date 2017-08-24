@@ -97,7 +97,59 @@
   </li>
 
   <li>
-    
+    <ul>
+      <li>hello</li>
+      <li>Uncaught ReferenceError: a is not defined</li>
+    </ul>
+    Within the function, the variable declaration is hoisted even though it's in a conditional block that won't be executed. The last line references a variable that doesn't exist in that scope.
+  </li>
+
+  <li>
+    <ul><li>4</li></ul>
+    The loop increments 'a' until 'i' is no longer less than 5. The for loop shares scope with the rest of the code in this example.
+  </li>
+
+  <li>
+    <ul>
+      <li>4</li>
+      <li>3</li>
+    </ul>
+    foo() has run and returned the value of bar(), which is 4. 'a' has been changed to 3 by that point.
+  </li>
+
+  <li>
+    <ul>
+      <li>supernested</li>
+      <li>global</li>
+    </ul>
+    The function 'checkscope()' returns the value of function 'nested()', which returns the falue of function 'supernested()', which the string "supernested". The last line references the global variable 'a', with the value "global".
+  </li>
+
+  <li>
+    <ul>
+      <li>outer</li>
+      <li>outer</li>
+      <li>outer</li>
+      <li>inner</li>
+    </ul>
+    Function parameters create local variables scoped within the function. The parameter 'foo' is given the value of 'a', but 'a' also retains its value. 'foo' is then re-assigned, but that doesn't affect 'a'. 'b' is also reassigned when the function runs.
+  </li>
+
+  <li>
+    <ul>
+      <li>50</li>
+      <li>60</li>
+      <li>15</li>
+    </ul>
+    The function parameter 'increment' does not share scope with the global variable 'increment'.
+  </li>
+
+  <li>
+    <ul>
+      <li>outer</li>
+      <li>outer</li>
+    </ul>
+    Our program tries to run 'setScope();', but variable 'setScope' has not been assigned to a function yet so it doesn't do anything.
   </li>
 </ol>
 
