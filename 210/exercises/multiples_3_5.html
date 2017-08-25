@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title></title>
+</head>
+<body>
+  <script>
+
+function multiplesOfThreeAndFive(min, max) {
+  for (var i = min; i <= max ; i++) {
+    if (i % 3 === 0) {
+      if (i % 5 === 0) {
+        console.log(String(i) + '!');
+      } else {
+        console.log(String(i));
+      }
+    } else if (i % 5 === 0) {
+      console.log(String(i));
+    }
+  }
+}
+
+multiplesOfThreeAndFive(1, 50);
+
+  </script>
+</body>
+</html>
