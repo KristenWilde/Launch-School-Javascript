@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title></title>
+</head>
+<body>
+  <script>
+
+function fizzBuzz(min, max) {
+  min = min || 1
+  max = max || 100
+  
+  for (var i = min; i <= max ; i++) {
+    if (i % 3 === 0) {
+      if (i % 5 === 0) {
+        console.log('FizzBuzz');
+      } else {
+        console.log('Fizz');
+      }
+    } else if (i % 5 === 0) {
+      console.log('Buzz');
+    }
+    else console.log(i)
+  }
+}
+
+fizzBuzz();
+
+  </script>
+</body>
+</html>
