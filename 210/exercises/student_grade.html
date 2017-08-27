@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+<body>
+<script>
+  
+function average(array) {
+  var total = 0;
+  for (var i = 0; i < array.length; i++) {
+    total += array[i];
+  }
+  return total / array.length;
+}
+
+function giveGrade(num) {
+  var grade; 
+  if (num >= 90) {
+    grade = 'A';
+  } else if (num >= 70) {
+    grade = 'B';
+  } else if (num >= 50) {
+    grade = 'C';
+  } else {
+    grade = 'F';
+  }
+  return grade;
+}
+
+var scores = [];
+var count = 0;
+var input;
+var finalGrade;
+var finalScore;
+
+do {
+  input = prompt('Enter score ' + String(count + 1) + 
+    '. If finished, enter "q" to calculate grade.');
+  if (input === 'q') {
+    break;
+  }
+  scores[count] = parseInt(input, 10);
+  count++;
+} while(true);
+
+finalScore = average(scores);
+
+finalGrade = giveGrade(finalScore);
+
+console.log('Based on the average of your ' + String(count) +
+  ' scores your final grade is ' + finalGrade) + ".";
+
+</script>
+</body>
+</html>
