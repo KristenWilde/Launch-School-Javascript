@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+<body>
+<script>
+  
+function trim(string) {
+  var result = '';
+  var startPosition;
+  var endPosition;
+
+  // look over leading spaces to find startPosition
+  for (var i = 0; i < string.length; i++) {
+    if (string[i] !== ' ') {
+      startPosition = i;
+      break;
+    }
+  }
+
+  // look over trailing spaces to fine endPosition
+  for (var j = string.length - 1; j >= 0; j--) {
+    if (string[j] !== ' ') {
+      endPosition = j;
+      break
+    }
+  }
+
+  // iterate from startPosition to endPosition, copying each character to result.
+  for (var k = startPosition; k <= endPosition; k++) {
+    result += string[k];
+  }
+
+  return result;
+}  
+
+console.log(
+trim('  abc  ') === "abc",
+trim('abc   ') === "abc",
+trim(' ab c') === "ab c",
+trim(' a b  c') === "a b  c",
+trim('      ') === "",
+trim('') === ""
+);
+
+</script>
+</body>
+</html>

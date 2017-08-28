@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+<body>
+<script>
+  
+function repeat(string, times) {
+  if ((typeof(times) !== "number") || (times < 0)) {
+    return undefined;
+  }
+
+  var result = '';
+  for (var i = 1; i <= times ; i++) {
+    result += string;
+  }
+
+  return result;
+}
+
+console.log(
+  repeat('abc', 1),
+  repeat('abc', 2),
+  //repeat('abc', -1),
+  // repeat('abc', 0),
+  repeat('abc', 'a')
+);
+
+
+</script>
+</body>
+</html>

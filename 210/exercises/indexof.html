@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+<body>
+<script>
+  
+// secondString is a substring within firstString. Return index of character where first match begins.
+
+// if no match return -1
+
+function indexOf(firstString, secondString) {
+  var match;
+  for (var i = 0; i < firstString.length; i++) {
+    if (firstString[i] !== secondString[0]) {
+      continue;
+    } else {// j is index of match in secondString.
+      for (var j = 0; j < secondString.length; j++) {
+        if (firstString[i + j] !== secondString[j]) {
+          match = 'no'
+          break;
+        }
+      }
+      if (match === 'no') {
+        match = undefined;
+        continue;
+      } else {
+        return i;
+      }
+    }
+  }
+  return -1;
+} 
+
+// search for last instance of secondString within firstString. Return index where substring begins
+
+function stringsMatch(one, two) {
+
+}
+
+function lastIndexOf(firstString, secondString) {
+  var match;
+  for (var i = firstString.length; i >= 0; i--) {
+    if (firstString[i] !== secondString[0]) {
+      continue;
+    } else {// j is index of match in secondString.
+      for (var j = 0; j < secondString.length; j++) {
+        if (firstString[i + j] !== secondString[j]) {
+          match = 'no'
+          break;
+        }
+      }
+      if (match === 'no') {
+        match = undefined;
+        continue;
+      } else {
+        return i;
+      }
+    }
+  }
+  return -1;
+}
+
+console.log( 
+indexOf('Some strings', 's'),       //5
+indexOf('Blue Whale', 'Whale'),    // 5
+indexOf('Blue Whale', 'Blute'),    // -1
+indexOf('Blue Whale', 'leB')        // -1
+);
+
+console.log(
+lastIndexOf('Some strings', 's'),               // 11
+lastIndexOf('Blue Whale, Killer Whale', 'Whale'),  // 19
+lastIndexOf('Blue Whale, Killer Whale', 'all'),  // -1
+);
+
+</script>
+</body>
+</html>
