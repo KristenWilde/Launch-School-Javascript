@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+<body>
+<script>
+  
+function generatePattern(n) {
+  var numString;
+  var totalLength;
+  var starLength;
+  var starString;
+
+  totalLength = squareLength(n);
+
+  for (var i = 1; i <= n; i++) {
+    numString = '';
+    for (var j = 1; j <= i; j++) {
+      numString += j;
+    }
+
+    starLength = totalLength - numString.length
+    starString = '';
+    while (starString.length < starLength) {
+      starString += '*';
+    }
+
+    console.log(numString + starString);
+  }
+} 
+
+function squareLength(n) {
+  var string = '';
+  for (var i = 1; i <= n; i++) {
+    string += i;
+  }
+  return string.length;
+}
+
+generatePattern(20);
+
+</script>
+</body>
+</html>
