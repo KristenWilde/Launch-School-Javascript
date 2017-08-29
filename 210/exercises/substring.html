@@ -9,7 +9,6 @@
   
 function substr(string, start, length) {
   var result = '';
-  // var loops;
 
   if (start < 0) {
     start += string.length;
@@ -24,16 +23,34 @@ function substr(string, start, length) {
   return result;
 }
 
+function substring(string, start, end) {
+  var length;
+  
+  if (end === undefined) {
+    end = string.length
+  } else if (end < 0 || isNaN(end)) {
+    end = 0;
+  }
+
+  if (start < 0 || isNaN(start)) {
+    start = 0;
+  }
+
+  length = end - start; 
+
+  if (length < 0) {
+    length *= -1;
+    start = end;
+  }
+  return substr(string, start, length);
+}
+
+
 var string = 'hello world';
 
 console.log(
-  substr(string, 2, 4),     // "llo "
-  substr(string, -3, 2),    // "rl"
-  substr(string, 8, 20)    // "rld"
+  substring(string, 0, -1)     
   );
-
-console.log(substr(string, 0, -20));
-console.log(substr(string, 0, 0));
 
 </script>
 </body>

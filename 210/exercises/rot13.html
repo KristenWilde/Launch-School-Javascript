@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>rot13</title>
+</head>
+<body>
+<script>
+
+var LOWERCASE_LOW = 97;
+var LOWERCASE_HIGH = 122;
+var UPPERCASE_LOW = 65;
+var UPPERCASE_HIGH = 90;
+
+function rot13(string) {
+  var newString = '';
+  var ROTATION_CONST = 13;
+  var asciiCode;
+
+  for (var i = 0; i < string.length; i++) {
+    asciiCode = string.charCodeAt(i)
+    
+    if (isLowerCase(asciiCode)) {
+      asciiCode += ROTATION_CONST;
+
+      if (asciiCode > LOWERCASE_HIGH) {
+        asciiCode = (asciiCode % LOWERCASE_HIGH) + LOWERCASE_LOW - 1;
+      }
+      newString += String.fromCharCode(asciiCode);
+    
+    } else if (isUpperCase(asciiCode)) {
+      asciiCode += ROTATION_CONST;
+
+      if (asciiCode > UPPERCASE_HIGH) {
+        asciiCode = (asciiCode % UPPERCASE_HIGH) + UPPERCASE_LOW - 1;
+      }
+
+      newString += String.fromCharCode(asciiCode);
+
+    } else {
+      newString += string[i]
+    }
+  }
+  return newString;
+}
+
+function isLowerCase(code) {
+  return (LOWERCASE_LOW <= code) && (code <= LOWERCASE_HIGH);
+}
+
+function isUpperCase(code) {
+  return (UPPERCASE_LOW <= code) && (code <= UPPERCASE_HIGH);
+}
+
+console.log(rot13('yz ab 13'));
+
+</script>
+</body>
+</html>
