@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+<body>
+<script>
+
+function toLowerCase(string) {
+  var result = '';
+  var charCode;
+
+  for (var i = 0; i < string.length; i++) {
+    charCode = string.charCodeAt(i);
+    
+    if ((65 <= charCode) && (charCode <= 90)) {
+      charCode += 32;
+      result += String.fromCharCode(charCode);
+    } else {
+      result += string[i];
+    }
+  }
+  return result;
+}
+
+console.log(
+  toLowerCase('ALPHABET'),
+  toLowerCase('123'),
+  toLowerCase('abcDEF')
+  );
+
+</script>
+</body>
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+<body>
+<script>
+ 
+function startsWith(string, subString) {
+  for (var i = 0; i < subString.length; i++) {
+    if (string[i] !== subString[i]) {
+      return false;
+    }
+  }
+  return true;
+} 
+
+var str = 'We put comprehension and mastery above all else';
+var longerString = "'We put comprehension and mastery above all else!';"
+
+console.log(
+  startsWith(str, "We"),
+  startsWith(str, "We put"),
+  startsWith(str, ''),
+  startsWith(str, 'put'),
+  startsWith(str, longerString)
+  );
+
+</script>
+</body>
+</html>

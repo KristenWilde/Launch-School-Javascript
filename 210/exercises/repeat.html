@@ -8,7 +8,7 @@
 <script>
   
 function repeat(string, times) {
-  if ((typeof(times) !== "number") || (times < 0)) {
+  if (isNaN(times) || (times < 0)) {
     return undefined;
   }
 

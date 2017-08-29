@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+<body>
+<script>
+  
+function substr(string, start, length) {
+  var result = '';
+  // var loops;
+
+  if (start < 0) {
+    start += string.length;
+  } 
+
+  for (var i = start; i < (start + length); i++) {
+    if (string[i] !== undefined) {
+      result += string[i];
+    }
+  }
+  
+  return result;
+}
+
+var string = 'hello world';
+
+console.log(
+  substr(string, 2, 4),     // "llo "
+  substr(string, -3, 2),    // "rl"
+  substr(string, 8, 20)    // "rld"
+  );
+
+console.log(substr(string, 0, -20));
+console.log(substr(string, 0, 0));
+
+</script>
+</body>
+</html>
