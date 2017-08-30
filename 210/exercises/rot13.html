@@ -16,28 +16,32 @@ var ROTATION_CONST = 13;
 function rot13(string) {
   var newString = '';
   var asciiCode;
+  var lowerLimit;
+  var upperLimit;
 
   for (var i = 0; i < string.length; i++) {
     asciiCode = string.charCodeAt(i)
     
     if (isLowerCase(asciiCode)) {
-      asciiCode = rotateCharCode(asciiCode, LOWERCASE_HIGH, LOWERCASE_LOW);
+      lowerLimit = LOWERCASE_LOW;
+      upperLimit = LOWERCASE_HIGH;
     } else if (isUpperCase(asciiCode)) {
-      asciiCode = rotateCharCode(asciiCode, UPPERCASE_HIGH, UPPERCASE_LOW);
+      lowerLimit = UPPERCASE_LOW;
+      upperLimit = UPPERCASE_HIGH;
+    } else {
+      newString += string[i];
+      continue;
+    }
+
+    asciiCode += ROTATION_CONST;
+
+    if (asciiCode > upperLimit) {
+      asciiCode = (asciiCode % upperLimit) + lowerLimit - 1;
     }
 
     newString += String.fromCharCode(asciiCode);
   }
   return newString;
-}
-
-function rotateCharCode(code, upperLimit, lowerLimit) {
-  code += ROTATION_CONST;
-
-  if (code > upperLimit) {
-    code = (code % upperLimit) + lowerLimit - 1;
-  }
-  return code;
 }
 
 function isLowerCase(code) {
