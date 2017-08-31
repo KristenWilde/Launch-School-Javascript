@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Array practice</title>
+</head>
+<body>
+<script>
+  
+function lastInArray(array) {
+  return array[array.length - 1];
+}
+
+function rollCall(names) {
+  for (var i = 0; i < names.length; i++) {
+    console.log(names[i]);
+  }
+}
+
+function reverse(arr) {
+  var result = [];
+  var i = arr.length - 1;
+  var newIndex = 0;
+
+  for(; i >= 0; i--) {
+    result[newIndex] = arr[i];
+    newIndex++;
+  }
+  return result;
+} // Note: I know the method 'push' is better here. It was interesting to try iterating one variable down (i) and one up (newIndex) at the same time.
+
+function firstIndex(value, array) {
+  var index = -1
+  for (var i = 0; i < array.length; i++) {
+    if (array[i] === value) {
+      index = i;
+      break;
+    }
+  }
+  return index;
+}
+
+function arrayToString(array) {
+  var newString = '';
+  for (var i = 0; i < array.length; i++) {
+    newString += String(array[i]);
+  }
+  return newString;
+}
+
+function push(array, value) {
+  array[array.length] = value;
+  return array.length;
+}
+
+var numbers = [1, 2, 3];
+console.log(push(numbers, 4));
+console.log(numbers);
+
+function pop(array) {
+  var lastVal = array[array.length - 1];
+  array.length = (array.length - 1);
+  return lastVal;
+}
+
+console.log(pop(numbers));
+console.log(numbers);
+
+function unshift(array, val) {
+  for (var i = array.length; i > 0; i--) {
+    array[i] = array[i - 1];
+  }
+  array[0] = val;
+  return array.length;
+}
+
+console.log(unshift(numbers, 0));
+console.log(numbers);
+
+function shift(array) {
+  var firstVal = array[0];
+  for (var i = 0; i < array.length - 1; i++) {
+    array[i] = array[i + 1];
+  }
+  array.length = array.length - 1;
+  return firstVal;
+}
+
+console.log(shift(numbers));
+console.log(numbers);
+
+function indexOf(array, value) {
+  for (var i = 0; i < array.length; i++) {
+    if (array[i] === value) {
+      return i;
+    }
+  } 
+  return -1;
+}
+
+console.log(indexOf(numbers, 3));
+console.log(indexOf(numbers, 7));
+
+function lastIndexOf(array, value) {
+  for (var i = array.length - 1; i >= 0; i--) {
+    if (array[i] === value) return i;
+  }
+  return -1;
+}
+
+console.log(lastIndexOf([1, 2, 3, 4, 3], 3));
+
+function slice(arr, start, end) {
+  var newArr = [];
+  for (var i = start; i < end; i++) {
+    push(newArr, arr[i]);
+  }
+  return newArr;
+}
+
+console.log(slice(['a', 'b', 'c', 'd', 'e', 'f', 'g'], 1, 3));
+
+// Removes numToRemove values from original array. Returns removed values in a new array.
+function splice(arr, startIndex, numToRemove) {
+  // Use slice to copy the elements to remove to a new array.
+  var endIndex = startIndex + numToRemove;
+  var newArr = slice(arr, startIndex, endIndex);
+  
+  // copy elements from arr starting with endIndex to a temporary array.
+  var tempArr = slice(arr, endIndex, arr.length);
+
+  // shorten arr to arr.length = startIndex
+  arr.length = startIndex;
+
+  // push each element from tempArr to arr.
+  for (var i = 0; i < tempArr.length; i++) {
+    push(arr, tempArr[i]);
+  }
+  // return the new array from step one.
+  return newArr;
+}
+
+var count = [1, 2, 3, 4, 5, 6, 7, 8];
+console.log(splice(count, 2, 5)); // [3, 4, 5, 6, 7]
+console.log(count);  // [1, 2, 8]
+
+function concat(arr1, arr2) {
+  var newArr = [];
+  for (var i = 0; i < arr1.length; i++) {
+    push(newArr, arr1[i]);
+  }
+
+  for (var i = 0; i < arr2.length; i++) {
+    push(newArr, arr2[i]);
+  }
+  return newArr;
+}
+
+console.log(concat([1, 2, 3], [4, 5, 6]));
+
+function join(arr, separator) {
+  var newString = '';
+  for (var i = 0; i < arr.length - 1; i++) {
+    newString += (arr[i] + separator);
+  }
+  newString += arr[arr.length - 1];
+  return newString;
+}
+
+console.log(join([1, 2, 3], ' and '));
+
+</script>
+</body>
+</html>
