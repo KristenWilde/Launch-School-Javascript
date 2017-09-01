@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+<body>
+<script>
+
+var digits = [4, 8, 15, 16, 23, 42];
+var letters = ['A', 'L', 'V', 'A', 'R', 'H'];
+
+function oddElementsOf(arr) {
+  var newArr = [];
+  for (var i = 1; i < arr.length; i += 2) {
+    newArr.push(arr[i]);
+  }
+  return newArr;
+}  
+
+console.log(oddElementsOf(digits));
+
+function combinedArray(even, odd) {
+  var newArr = [];
+  for (var i = 0; i < odd.length; i++) {
+    newArr.push(even[i]);
+    newArr.push(odd[i]);
+  }
+  return newArr;
+}
+
+console.log(combinedArray(digits, letters)); 
+
+function copyAndInvert(array) {
+  var newArray = [];
+  var newArrayLength = array.length * 2
+  for (var i = 0; i < array.length; i++) {
+    newArray[i] = array[i];
+    newArray[newArrayLength - i - 1] = array[i];
+  }
+  return newArray;
+}
+
+function mirroredArray(array) {
+  return arr.concat(arr.slice().reverse());
+}
+
+console.log(copyAndInvert(letters));
+
+function sortDescending(numArray) {
+  function compareNumbersDescending(a, b) {
+    return b - a;
+  }
+  var arrayCopy = numArray.slice();
+  return arrayCopy.sort(compareNumbersDescending);
+}
+
+console.log(digits);
+console.log(sortDescending(digits));
+
+// takes an array of arrays of numbers, returns a new array containing the sum of each sub-array.
+function matrixSums(arr) {
+  var sum;
+  var arrayCopy = arr.slice();
+  for (var i = 0; i < arr.length; i++) {
+    sum = arrayCopy[i].reduce(function(accumulator, currentVal) {
+      return accumulator + currentVal;
+    });
+    arrayCopy[i] = sum;
+  }
+  return arrayCopy;
+}
+
+console.log(matrixSums([[2, 5, 8], [12, 48, 0], [12]]));
+
+function uniqueElements(arr) {
+  var newArr = [];
+  for (var i = 0; i < arr.length; i++) {
+    if (newArr.indexOf(arr[i]) === -1) {
+      newArr.push(arr[i]);
+    }
+  }
+  return newArr;
+}
+
+console.log(uniqueElements([1, 2, 4, 3, 4, 1, 5, 4]));
+
+</script>
+</body>
+</html>
