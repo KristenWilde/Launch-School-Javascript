@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+<body>
+<script>
+
+var pets = {
+  cat: 'Simon',
+  dog: 'Dwarf',
+  mice: null,
+};
+
+function objectHasProperty(object, string) {
+  var propertyName;
+  for (propertyName in object) {
+    if (propertyName === string) {
+      return true;
+    }
+  }
+  return false;
+} 
+
+function objectHasProp(object, string) {
+  if (object[string] === undefined) {
+    return false;
+  } else {
+    return true;
+  }
+}
+
+var wins = {
+  steve: 3,
+  susie: 4,
+};
+
+function incrementProperty(object, string) {
+  if (!object[string]) {
+    object[string] = 1;
+  } else {
+    object[string] += 1;
+  }
+  return object[string];
+}
+
+var hal = {
+  model: 9000,
+  enabled: true,
+};
+var sal = {};
+
+function copyProperties(objToCopy, objToReceive) {
+  var property;
+  var count = 0;
+  for (property in objToCopy) {
+    objToReceive[property] = objToCopy[property];
+    count += 1;
+  }
+  return count;
+}
+
+console.log(copyProperties(hal, sal));
+console.log(sal);
+
+function wordCount(wordString) {
+  var counts = {};
+  var keys = wordString.split(' ');
+  for (var i = 0; i < keys.length; i++) {
+    if (counts[keys[i]]) {
+      counts[keys[i]] += 1;
+    } else {
+      counts[keys[i]] = 1;
+    } 
+  }
+  return counts;
+}
+
+function wordCount(text) {
+  var count = {};
+  var words = text.split(' ');
+  var word;
+
+  for (var i = 0; i < words.length; i++) {
+    word = words[i];
+    if (!count[word]) {
+      count[word] = 0;
+    }
+
+    count[word] += 1;
+  }
+
+  return count;
+}
+
+console.log(wordCount('box car cat bag box'));
+
+
+</script>
+</body>
+</html>

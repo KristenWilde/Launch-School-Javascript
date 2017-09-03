@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+<body>
+<script>
+  
+//1.
+var today = new Date();
+
+//2.
+console.log("Today's day is " + String(today.getDay()));
+
+//3.
+var daysOfWeek = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']
+var day = daysOfWeek[today.getDay()]
+console.log("Today's day is " + day);
+
+//4.
+var date = today.getDate();
+console.log("Today's date is " + day + ", the " + dateSuffix(date) + ".")
+
+//5.
+function dateSuffix(date) {
+  function suffix() {
+    if ((date >= 4 && date <= 20) || (date >= 24 && date <= 30))  {
+      return 'th';
+    } else if (date % 10 === 1) {
+      return 'st';
+    } else if (date % 10 === 2) {
+      return 'nd';
+    } else {
+      return 'rd';
+    }
+  }
+
+  return String(date) + suffix();
+}
+
+//6.
+var month = today.getMonth();
+console.log("Today's date is " + day + ", " + month + ' ' + dateSuffix(date) + ".")
+
+//7.
+var months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+month = months[month]
+console.log("Today's date is " + day + ", " + 
+                                 month + ' ' + 
+                                 dateSuffix(date) + ".")
+
+//8. 
+function formattedMonth(date) {
+  var months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+  
+  return months[date.getMonth()];
+}
+
+function formattedDateOfMonth(date) {
+  function suffix(d) {
+    if ((d >= 4 && d <= 20) || (d >= 24 && d <= 30))  {
+      return 'th';
+    } else if (d % 10 === 1) {
+      return 'st';
+    } else if (d % 10 === 2) {
+      return 'nd';
+    } else {
+      return 'rd';
+    }
+  }
+  var dateNum = date.getDate();
+  return String(dateNum) + suffix(dateNum);
+}
+
+function formattedDay(date) {
+  var daysOfWeek = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']
+
+  return daysOfWeek[date.getDay()];
+}
+
+function logDateMessage(date) {
+  var msg = "Today's date is " + formattedDay(date) + ', ' +
+                                 formattedMonth(date) + ' ' +
+                                 formattedDateOfMonth(date) + '.'
+  console.log(msg);
+}
+
+logDateMessage(today);
+
+//9.
+console.log(today.getFullYear(), today.getYear());
+
+
+//10.
+console.log(today.getTime());
+
+//11.
+var tomorrow = new Date(today.getTime());
+tomorrow.setDate(today.getDate() + 1);
+logDateMessage(tomorrow);
+
+//12.
+var nextWeek = new Date(today.getTime());
+console.log(nextWeek == today);
+
+//13.
+function dateMessage(date) {
+  return "Today's date is " + formattedDay(date) + ', ' +
+                              formattedMonth(date) + ' ' +
+                              formattedDateOfMonth(date) + '.'
+}
+
+console.log(dateMessage(nextWeek) === dateMessage(today));
+console.log(nextWeek.toDateString === today.toDateString);
+
+//14.
+function formatTime(date) {
+  var hours = String(date.getHours());
+  var min = String(date.getMinutes());
+  if (hours.length === 1) {
+    hours = '0' + hours;
+  }
+  if (min.length === 1) {
+    min = '0' + min;
+  }
+  return hours + ':' + min
+}
+
+console.log(formatTime(today));
+
+
+</script>
+</body>
+</html>

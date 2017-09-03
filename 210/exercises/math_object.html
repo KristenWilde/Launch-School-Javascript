@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+<body>
+<script>
+//1.
+function radiansToDegrees(radians) {
+  return radians * 180 / Math.PI;
+}  
+//2.
+var a = -180;
+console.log(Math.abs(a));
+//3.
+console.log(Math.sqrt(16777216));
+//4.
+console.log(Math.pow(16, 6));
+//5.
+var a = 50.72;
+var b = 49.2;
+var c = 49.86;
+console.log(Math.floor(a), Math.ceil(b), Math.round(c));
+
+//6. assuming min and max are in correct order
+function randomInt(min, max) {
+  return Math.floor(Math.random() * (max - min + 1) + min);
+}
+
+console.log(randomInt(1, 5));
+
+</script>
+</body>
+</html>

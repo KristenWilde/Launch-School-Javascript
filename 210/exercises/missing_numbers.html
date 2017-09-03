@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+<body>
+<script>
+
+//Write a function that takes a sorted array of integers as an argument, and returns an array that includes all the missing integers (in order) between the first and last elements of the argument.
+function missing(integers) {
+  var lowest = integers[0];
+  var highest = integers[integers.length - 1];
+  var result = [];
+
+  for (var i = lowest + 1; i < highest; i++) {
+    if (integers.indexOf(i) === -1) {
+      result.push(i)
+    }
+  }
+
+  return result;
+} 
+
+console.log(
+  missing([-3, -2, 1, 5]),                // [-1, 0, 2, 3, 4]
+  missing([1, 2, 3, 4]),                   // []
+  missing([1, 5]),                          // [2, 3, 4]
+  missing([6])                             // []
+  );
+
+
+</script>
+</body>
+</html>

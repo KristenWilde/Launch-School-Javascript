@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+<body>
+<script>
+
+function greetings(nameArr, dataObj) {
+  var name = nameArr.join(' ');
+  var description = dataObj.title + ' ' + dataObj.occupation;
+  return 'Hello ' + name + '! Nice to have a ' + description + ' around.'
+}
+
+var greeting = greetings(['John', 'Q', 'Doe'], { title: 'Master', occupation: 'Plumber' });
+
+console.log(greeting);
+
+</script>
+</body>
+</html>
