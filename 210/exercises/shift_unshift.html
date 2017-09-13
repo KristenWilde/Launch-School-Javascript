@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+<body>
+<script>
+
+function shift(arr) {
+  var firstElement = arr[0];
+  for (var i = 0; i < arr.length; i++) {
+    arr[i] = arr[i + 1];
+  }
+  arr.length = arr.length - 1;
+  return firstElement
+}
+
+function shift(arr) {
+  var firstElement = arr[0];
+  arr.splice(0, 1);
+  return firstElement;
+}
+
+function unshift(arr, args) {
+  for (var i = 1; i < arguments.length; i++) {
+    arr.splice(0, 0, arguments[i])
+  }
+
+  return arr.length;
+}
+
+var myArr = [1, 2, 3]
+console.log(shift(myArr));      // 1
+console.log(myArr);             // [2, 3]
+console.log(unshift(myArr, 5)); // 3
+console.log(myArr);             // [5, 2, 3]
+console.log(unshift(myArr, 'add', 'me', 'too'));
+console.log(myArr);
+
+</script>
+</body>
+</html>

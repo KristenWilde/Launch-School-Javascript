@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+<body>
+<script>
+
+var digits = { '0': 0, '1': 1, '2': 2, '3': 3, '4': 4,
+               '5': 5, '6': 6, '7': 7, '8': 8, '9': 9, }
+
+function stringToInt(string) {
+  var value = 0;
+  var digit;
+  var placeValue = 1;
+  for(var i = string.length - 1; i >= 0; i--) {
+    digit = digits[string[i]];
+    value += digit * placeValue;
+    placeValue *= 10;
+  }
+  return value;
+}
+
+function stringToSignedInt(string) {
+  var isNegative = false;
+  var integer;
+  switch (string[0]) {
+    case '-':
+      isNegative = true;
+    case '+':
+      string = string.substring(1);
+  }
+  integer = stringToInt(string);
+  if (isNegative) {
+    integer *= -1;
+  }
+  return integer;
+}
+
+console.log(stringToSignedInt('375'));
+console.log(stringToSignedInt('-426'));
+console.log(stringToSignedInt('+289'));
+
+</script>
+</body>
+</html>
