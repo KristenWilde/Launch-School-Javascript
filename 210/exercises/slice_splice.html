@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+<body>
+<script>
+
+// returns an arr containing elemnts from begin index up to but not including end index.
+function slice(arr, begin, end) {
+  var newArr = [];
+
+  if (begin > arr.length) {
+    begin = arr.length;
+  }
+  if (end > arr.length) {
+    end = arr.length;
+  }
+
+  for (var i = begin; i < end; i++) {
+    newArr.push(arr[i]);
+  }
+
+  return newArr;
+}
+
+//mutates the array by adding and/or deleting elements.
+function splice(arr, start, deleteCount, optItems) {
+  if (start > arr.length) {
+    start = arr.length;
+  }
+  if (deleteCount > (arr.length - start)) {
+    deleteCount = arr.length - start;
+  }
+
+  var lastElements = arr.slice(start + deleteCount);
+  var deletedItems = arr.slice(start, start + deleteCount);
+
+  arr.length = start;
+
+  for (var i = 3; i < arguments.length; i++) {
+    arr.push(arguments[i]);
+  }
+
+  for (var i = 0; i < lastElements.length; i++) {
+    arr.push(lastElements[i]);
+  }
+
+  return deletedItems;
+}
+
+var array = ['zero', 'one', 'two', 'three']
+console.log(slice(array, 1, 3));  // ['one', 'two']
+console.log(slice(array, 0, 2));  // ['zero', 'one']
+
+console.log(splice(array, 2, 1)); // ['two']
+console.log(array);               // ['zero', 'one', 'three']
+
+console.log(splice(array, 1, 0, 'five', 'six')); // ['zero', 'five', 'six', 'one', 'three']
+
+</script>
+</body>
+</html>
