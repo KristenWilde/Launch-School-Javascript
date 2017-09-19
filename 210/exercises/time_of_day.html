@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+<body>
+<script>
+
+var MILLISEC_PER_MIN = 60000;
+var MILLISEC_PER_DAY = 86400000;
+
+function timeOfDay(minAfterMidnight) {
+  return new Date(0, 1, 1, 0, minAfterMidnight).toTimeString().substr(0, 5);
+} 
+
+// returns number of minutes after midnight for a 5-character string representing a 24-hour time.
+function afterMidnight(timeStr) {
+  var time = hourMinObj(timeStr);
+
+  var ms = Date.UTC(70, 0, 1, time.hour, time.min);
+  return ms / MILLISEC_PER_MIN;
+}
+
+// returns number of minutes before midnight for a 24-hour time.
+function beforeMidnight(timeStr) {
+  var time = hourMinObj(timeStr);
+
+  var midnight = Date.UTC(2000, 0, 2, 0, 0);
+  var myTime = Date.UTC(2000, 0, 1, time.hour, time.min);
+  var ms =  midnight - myTime
+  return ms / MILLISEC_PER_MIN;
+}
+
+function hourMinObj(timeStr) {
+  var hours = parseInt(timeStr.substr(0, 2), 10);
+  var minutes = parseInt(timeStr.substr(3, 2), 10);
+
+  return { hour: hours, min: minutes };
+}
+
+console.log(afterMidnight('12:34'));   // 754
+
+var time = hourMinObj('12:34');
+console.log(time.hour, time.min);     // 12 34
+
+console.log(beforeMidnight('12:34')); // 686
+
+</script>  
+</body>
+</html>
