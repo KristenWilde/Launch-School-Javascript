@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+<body>
+<script>
+  
+function myOwnEvery(array, func) {
+  for (var i = 0; i < array.length; i++) {
+    if (!func(array[i])) return false;
+  }
+
+  return true;
+}
+
+var isAString = function(value) {
+  return typeof value === 'string';
+};
+
+myOwnEvery(['a', 'a234', '1abc'], isAString);       // true
+
+</script>
+</body>
+</html>

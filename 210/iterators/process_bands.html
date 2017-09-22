@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+<body>
+<script>
+
+/*
+I: array of band data
+O: new array, cleaned up
+R: 
+  country is Canada
+  Capitalize words in band names
+  Remove dots from band names
+Plan:
+  separate functions to remove dots and capitalize words
+  return map 
+*/
+
+var bands = [
+  { name: 'sunset rubdown', country: 'UK', active: false },
+  { name: 'women', country: 'Germany', active: false },
+  { name: 'a silver mt. zion', country: 'Spain', active: true },
+];
+
+function processBands(data) {
+  return data.map(function(band) {
+    return { 
+      name: capitalizeWords(removeDots(band.name)),
+      country: 'Canada',
+      active: band.active,
+    };
+  });
+}
+
+/*
+Plan:
+  loop through, adding all characters to result string except dots.
+*/
+
+function removeDots(string) {
+  var newString = '';
+  for (var i = 0; i < string.length; i++) {
+    if (string[i] !== '.') {
+      newString += string[i]
+    }
+  }
+  return newString;
+}
+
+/*
+Plan:
+  separate words into array
+  map each word so first letter is capitalized.
+  join with spaces
+*/
+
+function capitalizeWords(title) {
+  var words = title.split(' ').map(function(word) {
+    return word[0].toUpperCase() + word.substr(1);
+  });
+
+  return words.join(' ');
+}
+
+console.log(processBands(bands));
+
+
+[
+  { name: 'Sunset Rubdown', country: 'Canada', active: false },
+  { name: 'Women', country: 'Canada', active: false },
+  { name: 'A Silver Mt Zion', country: 'Canada', active: true },
+]
+
+</script>
+</body>
+</html>

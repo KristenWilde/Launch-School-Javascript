@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+<body>
+<script>
+
+/*
+I: word, word array
+O: new array of words that are anagrams
+R: 
+Plan: 
+  Sort word, 
+  Sort each word - map of list.
+  Filter for matches
+*/
+
+function anagram(word, list) {
+  return list.filter(function(item) {
+    return sortedWord(item) === sortedWord(word);
+  });
+}
+
+function sortedWord(word) {
+  return word.split('').sort().join('');
+}
+
+
+console.log(anagram('listen', ['enlists', 'google', 'inlets', 'banana'])); // [ "inlets" ]
+console.log(anagram('listen', ['enlist', 'google', 'inlets', 'banana']));  // [ "enlist", "inlets" ]
+
+</script>
+</body>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+<body>
+<script>
+
+function myReduce(array, func, initial) {
+  var accumulator;
+  if (initial === undefined) {
+    accumulator = array[0];
+    array = array.slice(1);
+  } else {
+    accumulator = initial;
+  }
+
+  array.forEach(function(value) {
+    accumulator = func(accumulator, value);
+  });
+
+  return accumulator;
+}
+
+var smallest = function(result, value) {
+  return result <= value ? result : value;
+};
+
+var sum = function(result, value) {
+  return result + value;
+};
+
+myReduce([5, 12, 15, 1, 6], smallest);           // 1
+myReduce([5, 12, 15, 1, 6], sum, 10);           // 49
+
+</script>
+</body>
+</html>

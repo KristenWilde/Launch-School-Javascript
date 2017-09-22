@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+<body>
+<script>
+  
+function myMap(array, func) {
+  var result = [];
+  array.forEach(function(value){
+    result.push(plusOne(value));
+  });
+
+  return result;
+}
+
+var plusOne = function(n) { return n + 1; };
+
+myMap([1, 2, 3, 4], plusOne);       // [2, 3, 4, 5]
+
+</script>
+</body>
+</html>

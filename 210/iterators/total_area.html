@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+<body>
+<script>
+
+function totalArea(arrayOfRectanges) {
+  var areas = arrayOfRectanges.map(function(rectangle) {
+    return rectangle[0] * rectangle[1];
+  });
+  return areas.reduce(function(total, currentVal) {
+    return total + currentVal;
+  });
+} 
+
+function totalSquareArea(arrayOfRectanges) {
+  var squares = arrayOfRectanges.filter(function(rectangle) {
+    return rectangle[0] === rectangle[1];
+  });
+
+  return totalArea(squares);
+}
+
+var rectangles = [[3, 4], [6, 6], [1, 8], [9, 9], [2, 2]];
+
+console.log(totalArea(rectangles)); // 141
+console.log(totalSquareArea(rectangles)); // 121
+
+
+</script>  
+</body>
+</html>

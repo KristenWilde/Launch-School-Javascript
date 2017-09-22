@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+<body>
+<script>
+/* 
+I: octal number string
+O: decimal number
+R: rightmost digit multiplied by 8^0, next by 8^1, etc.
+    sum these values.
+Plan: split the number string into an array of digits
+      reverse the array
+      map the array, converting to numbers and raising each element to the power of its index.
+      sum the resulting values to get the total.
+*/
+function octalToDecimal(numberString) {
+  var array = numberString.split('');
+  var components = array.reverse().map(function(num, index) {
+    return Number(num) * Math.pow(8, index);
+  });
+  return components.reduce(function(sum, component) {
+    return sum + component;
+  });
+}
+
+console.log(
+  octalToDecimal('1'),          // 1
+  octalToDecimal('10'),          // 8
+  octalToDecimal('130'),         // 88
+  octalToDecimal('17'),         // 15
+  octalToDecimal('2047'),        // 1063
+  octalToDecimal('011')         // 9
+);
+
+</script>
+</body>
+</html>

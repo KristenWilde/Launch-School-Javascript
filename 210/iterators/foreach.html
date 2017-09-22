@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+<body>
+<script>
+
+function myForEach(array, func) {
+  for (var i = 0; i < array.length; i++) {
+    func(array[i]);
+  }
+} 
+
+var min = Infinity;
+var max = -Infinity;
+
+var getMinMax = function(value) {
+  min = value <= min ? value : min;
+  max = value >= max ? value : max;
+}
+
+myForEach([4, 5, 12, 23, 3], getMinMax);     // undefined
+console.log(min, max);      // 3 23 
+
+</script>
+</body>
+</html>
