@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+<body>
+<script>
+
+// general methods
+
+function sumNumbers(array) {
+  return array.reduce(function(sum, item) {
+    return sum + item;
+  });
+}
+
+function averageNumber(array) {
+  return sumNumbers(array) / array.length
+}
+
+
+function getMinimum(array) {
+  return array.reduce(function(low, current) {
+      return current < low ? current : low;
+    }, Infinity);
+}
+
+function getMaximum(array) {
+  return array.reduce(function(high, current) {
+    return current > high ? current : high;
+  }, -Infinity);
+}
+
+// score methods
+
+function generateClassRecordSummary(scoresObj) { 
+  return { 
+    studentGrades: generateStudentGrades(scoresObj), 
+    exams: examScores(scoresObj), 
+  }
+};
+
+function generateStudentGrades(scoresObj) {
+  return Object.keys(scoresObj).map(function(student){
+    let currentStudentScores = scoresObj[student].scores;
+    return gradeString(studentPercent(currentStudentScores));
+  });
+}
+
+function studentPercent(studentRecord) {
+  var examAverage = averageNumber(studentRecord.exams);
+  var exerciseScore = sumNumbers(studentRecord.exercises);
+  return Math.round(examAverage * 0.65 + exerciseScore * 0.35)
+}
+
+function gradeString(percent) {
+  var grade;
+  if (percent >= 93) {
+    grade = 'A';
+  } else if (percent >= 85) {
+    grade = 'B';
+  } else if (percent >= 77) {
+    grade = 'C';
+  } else if (percent >= 69) {
+    grade = 'D';
+  } else if (percent >= 60) {
+    grade = 'E';
+  } else {
+    grade = 'F';
+  }
+  return String(percent) + ' (' + grade + ')';
+}
+
+function examScores(scoresObj) {
+  var results = [];
+  var currentExamScores;
+  var averageForExam;
+  var min;
+  var max;
+  var summaryObj;
+
+  for (var i = 0; i < 4; i += 1) {
+    currentExamScores = [];
+    Object.keys(scoresObj).forEach(function(student){
+      currentExamScores.push(scoresObj[student].scores.exams[i])
+    });
+    averageForExam = averageNumber(currentExamScores);
+    min = getMinimum(currentExamScores);
+    max = getMaximum(currentExamScores);
+    summaryObj = { average: averageForExam, minimum: min, maximum: max }
+    results.push(summaryObj);
+  }
+  return results;
+}
+
+
+var studentScores = {
+  student1: {
+    id: 123456789,
+    scores: {
+      exams: [90, 95, 100, 80],
+      exercises: [20, 15, 10, 19, 15],
+    },
+  },
+  student2: {
+    id: 123456799,
+    scores: {
+      exams: [50, 70, 90, 100],
+      exercises: [0, 15, 20, 15, 15],
+    },
+  },
+  student3: {
+    id: 123457789,
+    scores: {
+      exams: [88, 87, 88, 89],
+      exercises: [10, 20, 10, 19, 18],
+    },
+  },
+  student4: {
+    id: 112233445,
+    scores: {
+      exams: [100, 100, 100, 100],
+      exercises: [10, 15, 10, 10, 15],
+    },
+  },
+  student5: {
+    id: 112233446,
+    scores: {
+      exams: [50, 80, 60, 90],
+      exercises: [10, 0, 10, 10, 0],
+    },
+  },
+};
+
+
+var summary = generateClassRecordSummary(studentScores);
+
+console.log(summary);
+
+/*
+{
+  studentGrades: [ '87 (B)', '73 (D)', '84 (C)', '86 (B)', '56 (F)' ],
+  exams: [
+    { average: 75.6, minimum: 50, maximum: 100 },
+    { average: 86.4, minimum: 70, maximum: 100 },
+    { average: 87.6, minimum: 60, maximum: 100 },
+    { average: 91.8, minimum: 80, maximum: 100 },
+  ],
+}
+*/
+</script>  
+</body>
+</html>
