@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+<body>
+<script>  
+
+function makeDoubler(caller) {
+  return function(number) {
+    console.log('This function was called by ' + caller + '.');
+    return number + number;
+  }
+}
+
+var doubler = makeDoubler('Victor');
+
+doubler(5)
+
+</script>
+</body>
+</html>

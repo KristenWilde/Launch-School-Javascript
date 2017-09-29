@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+<body>
+<script>
+
+function reverseString(string) {
+  return string.split('').reverse().join('');
+}
+
+console.log(reverseString('The quick brown fox') === "xof nworb kciuq ehT");
+
+function acronym(string) {
+  var firstLetter = function(word) {
+    return word[0];
+  }
+
+  return string.split(/[\- ]/).map(firstLetter).join('').toUpperCase();
+}
+
+console.log(acronym('Hyper-text Markup Language'));                // "HTML"
+/* Email Validation Problem
+R: 
+  @
+  local: letters or digits only
+  domain: two components with . between,
+          only letters
+  case insensitive
+A:
+  return !!match 
+*/
+function isValidEmail(email) {
+  return Boolean(email.match(/^[a-z0-9]+@[a-z]+(\.[a-z]+)+$/i));
+}
+
+console.log(isValidEmail('foo12@baz.com'));    // true
+console.log(isValidEmail('Foo@mx.baz.com.ph'));       // returns true
+console.log(isValidEmail('HELLO123@baz'));            // returns false
+console.log(isValidEmail('foo.bar@baz.to'));          // returns false
+console.log(isValidEmail('foo@baz.'));                // returns false
+console.log(isValidEmail('foo_bat@baz'));             // returns false
+console.log(isValidEmail('foo@bar.a12'));             // returns false
+console.log(isValidEmail('foo_bar@baz.com'));         // returns false
+
+/* Matching Parentheses
+A:
+  var hasParen = string.match(/\(/) || string.match(/\)/)
+  var matchingSet = /\([.]*?\)/
+  while ( or ),
+    find a match, replace with ''
+      If no match, return false
+    repeat.
+
+  return true
+
+*/
+
+function isBalanced(text) {
+  var matchedSet = RegExp(/\([^(]*?\)/g);
+  function hasParen(string) {
+    return Boolean(string.match(/[()]/));
+  }
+
+  while (hasParen(text)) {
+    if (text.match(matchedSet)) {
+      text = text.replace(matchedSet, '');
+    } else {
+      return false;
+    }
+  }
+  return true;
+}
+
+function isBalanced(text) {
+  var tally = 0;
+  for (var i = 0; i < text.length; i++) {
+    if (text[i] === '(') {
+      tally += 1;
+    } else if (text[i] === ')') {
+      tally -= 1;
+    }
+
+    if (tally < 0) return false; 
+  }
+  return tally === 0;
+}
+
+isBalanced('What (is) this?');        // true
+isBalanced('What is) this?');         // false
+isBalanced('What (is this?');         // false
+isBalanced('((What) (is this))?');    // true
+isBalanced('((What)) (is this))?');   // false
+isBalanced('Hey!');                   // true
+isBalanced(')Hey!(');                 // false
+isBalanced('What ((is))) up(');       // false
+</script>
+</body>
+</html>

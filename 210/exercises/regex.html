@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+<body>
+<script>
+  
+function isUrl(string) {
+  return !!string.match(/^https?:\/\/\S*?$/)
+}  
+
+function fields(input) {
+  return input.split(/[, \t]+/)
+}
+
+function mysteryMath(mathString) {
+  return mathString.replace(/[+\-*/]/, '?')
+}
+
+function mysteriousMath(mathString) {
+  return mathString.replace(/[+\-*/]/g, '?')
+}
+
+function danish(text){
+  return text.replace(/\b(apple|cherry|blueberry)\b/, 'danish');
+}
+
+function formatDate(dateString){
+  return dateString.replace(/(\d{4})-(\d\d)-(\d\d)/, '$3.$2.$1')
+}
+
+function dateFormat(dateString){
+  return dateString.replace(/(\d{4})(\/|-)(\d\d)\2(\d\d)/, '$4.$3.$1')
+}
+
+console.log(
+  isUrl('http://launchschool.com'),   // -> true
+  isUrl('https://example.com'),       // -> true
+  isUrl('https://example.com hello'), // -> false
+  isUrl('   https://example.com'),    // -> false
+  );
+
+console.log(fields("Pete,201,Student"));
+// -> ['Pete', '201', 'Student']
+
+console.log(fields("Pete \t 201    ,  TA"));
+// -> ['Pete', '201', 'TA']
+
+console.log(fields("Pete \t 201"));
+// -> ['Pete', '201']
+
+console.log(mysteryMath('4 + 3 - 5 = 2'));
+// -> '4 ? 3 - 5 = 2'
+
+console.log(mysteryMath('(4 * 3 + 2) / 7 - 1 = 1'));
+// -> '(4 ? 3 + 2) / 7 - 1 = 1'
+
+console.log(mysteriousMath('4 + 3 - 5 = 2'));           // -> '4 ? 3 ? 5 = 2'
+console.log(mysteriousMath('(4 * 3 + 2) / 7 - 1 = 1')); // -> '(4 ? 3 ? 2) ? 7 ? 1 = 1'
+
+console.log(danish('An apple a day keeps the doctor away'));
+// -> 'An danish a day keeps the doctor away'
+
+console.log(danish('My favorite is blueberry pie'));
+// -> 'My favorite is danish pie'
+
+console.log(
+formatDate('2016-06-17'), // -> '17.06.2016'
+formatDate('2016/06/17') // -> '2016/06/17' (no change)
+  );
+
+console.log(dateFormat('2016-06-17'));
+console.log(dateFormat('2016/06/17'));
+console.log(dateFormat('2016/06-17'));
+
+</script>  
+</body>
+</html>
