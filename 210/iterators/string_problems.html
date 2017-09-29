@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+<body>
+<script>
+
+var  firstName = 'Kristen';
+var lastName = 'Wilde';
+var fullName = firstName + ' ' + lastName;
+//or
+fullName = [firstName, lastName].join(' ');
+
+firstName.concat(lastName); // 'KristenWilde'
+
+fullName.split(' ');        // ["Kristen", "Wilde"]
+
+var language = 'JavaScript';
+var idx = language.indexOf('S'); // 4
+
+var charCode = language.charCodeAt(idx);  // 83
+String.fromCharCode(charCode);            // 'S'
+
+language.lastIndexOf('a');    // 3
+
+var a = 'a';
+var b = 'b';
+
+console.log(a > b); // false
+
+b = 'B';
+console.log(a > b); // true
+
+var aIndex = language.indexOf('a');
+var vIndex = language.indexOf('v');
+
+language.substr(aIndex, 4);
+language.substr(vIndex, 4);
+
+var name = prompt('What\'s your name?');
+if (name.endsWith('!')) {
+  name = name.slice(0, name.length - 1);
+  alert('HELLO ' + name.toUpperCase() + '. WHY ARE WE SCREAMING?');
+} else {
+  alert('Hello ' + name + '.');
+}
+
+
+
+
+</script>  
+</body>
+</html>

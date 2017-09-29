@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+<body>
+<script src="http://dbdwvr6p7sskw.cloudfront.net/210/files/email_data_v2.js"></script>
+<script>
+/*
+I: emailData, one long string 
+O: console output:
+  Count of Email: 5
+  Date Range: Sat Jun 25 2016 - Thu Aug 11 2016
+R:  
+  ##||## separates emails
+  #/# separates parts of the message.
+    Date is 3rd. Format: Date: 07-27-2016
+  Q: Are emails ordered by date?
+A:
+  separate emails. split string on delimiter. length equals count
+  For each email,
+    find date part by separating parts.
+
+  Compare dates.
+    ? Use date object if needed, 
+      min and max or just order
+  Format output
+    count
+    date
+
+ */
+
+ // Returns a new array of date objects, sorted from earliest to latest
+function sortDates(dates) {
+// make an object to associate date values with milliseconds
+  var msToDates = {};
+
+// getTime to convert to milliseconds
+  dates.forEach(function(date) {
+    let ms = date.getTime();
+    msToDates[ms] = date;
+  })
+
+// sort milliseconds
+  var sortedMs = Object.keys(msToDates).sort();
+
+// map sorted milliseconds to date objects and return
+  return sortedMs.map(function(ms) {
+    return msToDates[ms];
+  });
+}
+
+
+function mailCount(emailData) {
+  function getDate(email) {
+    var dateString = email.split('#/#')[2].trim();
+
+    var year = Number(dateString.substr(-4));
+    var date = Number(dateString.substr(-7, 2));
+    var month = Number(dateString.substr(6, 2)) - 1;
+
+    return new Date(year, month, date);
+  }
+
+  var emails = emailData.split('##||##');
+  var dates = emails.map(getDate);
+  dates = sortDates(dates);
+
+  console.log('Count of Email: ' + String(emails.length));
+  console.log('Date Range: ' + dates[0].toDateString() + 
+    ' - ' + dates[dates.length - 1].toDateString() );
+}
+
+mailCount(emailData);
+
+
+</script>
+</body>
+</html>
