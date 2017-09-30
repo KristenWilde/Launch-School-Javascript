@@ -37,36 +37,28 @@ var longText = 'Four score and seven years ago our fathers brought forth' +
   ' the people, for the people, shall not perish from the' +
   ' earth.';
 
-/*
-I: long text
-O: sentence, word count
-R: sentences may end with . ? !
-    Any sequence chars that is not spaces should be treated as a word. --
-A:
-  split on regex to get array of sentences.
-  Map to array of objects with wordcounts
-    split on spaces to get words.
-    D: objects.
-  Sort - compare lengths 
-
-  Log to console.
-*/
 
 function longestSentence(text) {
-  var wordCount;
   var longest;
-  var sentencesData = text.split(/[.!?]/).map(function(sentence) {
-    wordCount = sentence.split(' ').length;
-    return [wordCount, sentence];
-  });
-  sentencesData.sort(function(sentenceA, sentenceB) {
-    return sentenceB[0] - sentenceA[0];
+  var sentenceRegex = new RegExp(/(.+?[.!?])/g);
+
+  var sentences = text.match(sentenceRegex);
+  var sentenceData = sentences.map(function(sentence) {
+    return { wordCount: countWords(sentence), sentence: sentence };
   });
 
-  longest = sentencesData[0]
-  console.log(longest[1]);
-  console.log('The longest sentence has ' + String(longest[0]) + ' words.');
+  sentenceData.sort(function(sentenceA, sentenceB) {
+    return sentenceB.wordCount - sentenceA.wordCount;
+  });
+
+  longest = sentenceData[0]
+  console.log(longest.sentence);
+  console.log('The longest sentence has ' + String(longest.wordCount) + ' words.');
 } 
+
+function countWords(sentence) {
+  return sentence.trim().split(' ').length;
+}
 
 longestSentence(longText);
 
