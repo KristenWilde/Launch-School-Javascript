@@ -35,29 +35,23 @@ var longText = 'Four score and seven years ago our fathers brought forth' +
   ' -- that this nation, under God, shall have a new birth' +
   ' of freedom -- and that government of the people, by' +
   ' the people, for the people, shall not perish from the' +
-  ' earth.';
+  ' earth.!!';
 
 
 function longestSentence(text) {
-  var longest;
-  var sentenceRegex = new RegExp(/(.+?[.!?])/g);
+  var sentenceRegex = new RegExp(/(\S.*?[.!?]+)/g);
 
   var sentences = text.match(sentenceRegex);
-  var sentenceData = sentences.map(function(sentence) {
-    return { wordCount: countWords(sentence), sentence: sentence };
+  var longest = sentences.reduce(function(accum, sentence) {
+    return countWords(sentence) > countWords(accum) ? sentence : accum;
   });
 
-  sentenceData.sort(function(sentenceA, sentenceB) {
-    return sentenceB.wordCount - sentenceA.wordCount;
-  });
-
-  longest = sentenceData[0]
-  console.log(longest.sentence);
-  console.log('The longest sentence has ' + String(longest.wordCount) + ' words.');
+  console.log(longest);
+  console.log('The longest sentence has ' + String(countWords(longest)) + ' words.');
 } 
 
 function countWords(sentence) {
-  return sentence.trim().split(' ').length;
+  return sentence.split(' ').length;
 }
 
 longestSentence(longText);
