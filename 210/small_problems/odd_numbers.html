@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+<body>
+<script> 
+
+function oddNumbers(low, high) {
+  var counter;
+  if (arguments.length === 0) {
+    counter = 1;
+    high = 99;
+  } else if (low % 2 === 0) {
+    counter = low + 1;
+  } else {
+    counter = low;
+  }
+
+  while (counter <= high) {
+    console.log(counter);
+    counter+= 2;
+  }
+}
+
+oddNumbers();
+
+oddNumbers(15, 30);
+
+oddNumbers(16, 21);
+
+</script>
+</body>
+</html>

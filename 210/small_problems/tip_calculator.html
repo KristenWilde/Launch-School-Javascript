@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+<body>
+<script>
+
+var bill = parseFloat(prompt('What is the bill?'));
+var rate = parseFloat(prompt('What is the tip percentage?')) / 100;
+var message = 'The tip is $' + (bill * rate).toFixed(2) +
+              '\nThe total is $' + (bill * rate + bill).toFixed(2);
+
+console.log(message);
+alert(message);
+
+</script>  
+</body>
+</html>

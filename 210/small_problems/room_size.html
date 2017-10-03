@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+<body>
+<script>
+
+var length;
+var width;
+var areaMeters;
+var areaFt;
+var message;
+
+function roundHundredths(number) {
+
+}
+
+length = prompt('Enter the length of the room in meters:');
+width = prompt('Enter the width of the room in meters:');
+
+areaMeters = Number(length) * Number(width);
+areaFt = areaMeters * 10.76;
+
+message = 'The area of the room is ' + String(areaMeters) + ' square meters (' +
+          String(areaFt) + ' square feet).';
+
+console.log(message);
+alert(message);
+
+</script>  
+</body>
+</html>
