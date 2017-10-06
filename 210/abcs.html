@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+<body>
+<script>
+/*Now I Know My ABCs
+
+A collection of spelling blocks has two letters per block, as shown in this list:
+
+B:O   X:K   D:Q   C:P   N:A
+G:T   R:E   F:S   J:W   H:U
+V:I   L:Y   Z:M
+This limits the words you can spell with the blocks to just those words that do not use both letters from any given block. You can also only use each block once.
+
+Write a function that takes a word as a string, and returns true if it can spell the argument passed in from the set of blocks, false otherwise. You can consider the letters to be case insensitive when you apply the rules.
+
+Input: word string
+output: boolean, whether or not word can be spelled with just one of each letter combination.
+
+data structure: 
+  lookup: hash
+
+algorithm:
+  convert to lowercase
+  iterate through letters
+    if last index of letter is not the same as the current index, return false.
+    if index of letter's pair is not -1, return false.
+
+  return true
+*/
+
+var pairs = { b: 'o', o: 'b', x: 'k', k: 'x', r: 'e', e: 'r', l: 'y', y: 'l',
+              d: 'q', q: 'd', f: 's', s: 'f', z: 'm', m: 'z', c: 'p', p: 'c',
+              j: 'w', w: 'z', n: 'a', a: 'n', h: 'u', u: 'h' } 
+
+function isBlockWord(word) {
+  word = word.toLowerCase();
+
+  for (var i = 0; i < word.length; i++) {
+    if (word.lastIndexOf(word[i]) !== i) {
+      return false;
+    }
+    if (word.indexOf(pairs[word[i]]) !== -1) {
+      return false;
+    }
+  }
+
+  return true;
+}
+
+console.log(
+isBlockWord('BATCH') === true,
+isBlockWord('BUTCH') === false,
+isBlockWord('jest') === true,
+isBlockWord('') === true,
+isBlockWord('Pop') === false,
+isBlockWord('floW') === true,
+isBlockWord('APPLE') === false,
+isBlockWord('apple') === false,
+isBlockWord('apPLE') === false,
+isBlockWord('Box') === false,
+);
+  
+
+
+</script>  
+</body>
+</html>

@@ -17,7 +17,7 @@ Output:
   If input is invalid (contains characters other than digits and .) return null.
 Rules:
   version1 and version 2 are numbers separated by . 
-  Compare left-most numbers first. Then move to the right.
+  Compare left-most numbers first. If one of them is larger, that version is larger. Then move to the next two numbers and compare.
 Data structure:
   input: strings
   internal: array of numbers
@@ -35,20 +35,13 @@ Algorithm:
 */  
 
 function compareVersions(version1, version2) {
-  var invalidChar = /[^\d.]/;
-  if (version1.match(invalidChar) || version2.match(invalidChar)) return null;
+  var invalid = /(^\.|[^.\d]|\.\.|\.$)/;
+  if (version1.match(invalid) || version2.match(invalid)) return null;
 
   ver1 = version1.split('.');
   ver2 = version2.split('.');
   var length = ver1.length > ver2.length ? ver1.length : ver2.length;
   
-  // console.log(ver1);
-  // console.log(ver2);
-  // console.log(length);
-
-  // ver1 = ver1.map(function(number) {
-  //   return parseInt(number) || 0;
-  // });
   for (var i = 0; i < length; i++) {
     let difference = (Number(ver1[i]) || 0) - (Number(ver2[i]) || 0);
     if (difference > 0) return 1;
@@ -66,6 +59,9 @@ compareVersions('1.2', '1.2.0.0'), // 0
 compareVersions('1.18.2', '1.2.0.0'), // 1
 compareVersions('13.37', '1.4.8' ), // 1
 compareVersions('df.4', '1'), // null
+compareVersions('.1', '1'), // null
+compareVersions('1.', '1'), // null
+compareVersions('1..1', '1') // null
 );
 
 

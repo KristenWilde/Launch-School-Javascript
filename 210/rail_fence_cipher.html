@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+<body>
+<script>
+
+// Implement the encoding and decoding of the rail fence cipher
+// In the rail fence the cipher, the message is written downwards
+// on successive rails of an imaginary fence, then moving up
+// when we get to the bottom. like a zig-zag. Finally the message
+// is read off in rows.
+// example
+// 'WE ARE DISCOVERED FLEE AT ONCE' -> 'WECRLTEERDSOEEFEAOCAIVDEN'
+// W . . . E . . . C . . . R . . . L . . . T . . . E  
+// . E . R . D . S . O . E . E . F . E . A . O . C .  
+// . . A . . . I . . . V . . . D . . . E . . . N . .  
+//
+// build two functions:
+//   encodeRailFenceCipher(plainText, numberOfRails) 
+//     returns the encoded string 
+//   decodeRailFenceCipher(encodedText, numberOfRails)
+//     returns the plain text string  
+
+// encode function:
+// I: string, number of rails
+// O: encoded string
+/* R: Spaces are removed
+      Case doesn't matter
+      Add each letter of the string to one of a number (given) of new strings ('rails').
+        When each new string has received a letter go back the other direction.
+        When the first string has received a letter switch directions again.
+      Put the three strings together for the result.
+
+    A:
+    Remove spaces
+    Make an array (rails) of strings that has numberOfRails empty strings. (Can do this with a for loop or array constructor.)
+    Create a variable 'increasing' that holds a boolean. 
+    Create a variable 'currentRail' that tells which rail to concat to.
+    While iterating through the string,
+      concat letter to rails[currentRail]. 
+      currentRail increments or decrements. 
+      If currentRail is greater/equal to numberOfRails or less than 0, boolean switches.
+    Join the rails and return.
+*/ 
+
+function encodeRailFenceCipher(string, numberOfRails) {
+  string = string.replace(/ /g, '');
+  var rails = new Array(numberOfRails).fill('');
+  var increasing = true;
+  var currentRail = 0;
+
+  for (var i = 0; i < string.length; i++) {
+    rails[currentRail] += string[i];
+
+    currentRail = increasing ? currentRail + 1 : currentRail - 1;
+
+    if (currentRail === numberOfRails) {
+      currentRail = numberOfRails - 2;
+      increasing = false;
+    } 
+    else if (currentRail < 0) {
+      currentRail = 1;
+      increasing = true;
+    }
+  }
+
+  return rails.join('');
+}
+
+console.log(encodeRailFenceCipher('m', 4));
+console.log(encodeRailFenceCipher('', 5));
+console.log(encodeRailFenceCipher('WE ARE DISCOVERED FLEE AT ONCE', 3));// === 'WECRLTEERDSOEEFEAOCAIVDEN');
+console.log(encodeRailFenceCipher('hello', 2));// === 'hloel');
+console.log(encodeRailFenceCipher('WE ARE DISCOVERED FLEE AT ONCE', 7));
+/*
+WRE   0 12 23
+EEEC 1  
+AVDN
+ROFO
+ECLT
+DSEA
+IE
+*/
+
+
+
+
+</script>
+</body>
+</html>
+
