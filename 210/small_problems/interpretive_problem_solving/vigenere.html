@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+<body>
+<script src="log.js"></script>
+<script>
+
+/*
+I: plaintext string, keyword
+O: encrypted result string
+R: each letter of the keyword represents a number (it's index in the alphabet).
+   The keyword shift values repeat over and over.
+   Going through the plaintext string letter by letter, 
+     Find the corresponding shift value and
+     apply a shift corresponding to that value.
+   Keep case of the string to be encrypted
+   Keyword case doesn't matter.
+  
+D: array of arrays
+
+A:
+Initialize result array
+Create array of keyword values (split, map)
+Construct array of arrays using a loop, looping through the keyword values
+  - shift is undefined for spaces or non-letters.
+Map the array to characters. call getNewChar for each letter. 
+Join characters.
+Return result
+
+*/  
+
+
+function vigenereEncrypt(plaintext, keyword) {
+  var result;
+  var keys = keyword.toLowerCase().split('').map(function(char){
+    return alphaLower.indexOf(char);
+  });
+  var charsWithKeys = [];
+  var chars = plaintext.split('');
+  var char;
+  var key;
+  for (var i = 0, j = 0; i < chars.length; i++) {
+    if (j === keys.length) {
+      j = 0;
+    } 
+    char = chars[i];
+    
+    if (char.match(/[a-zA-Z]/)) {
+      key = keys[j] || 0;
+      charsWithKeys.push([char, key]);
+      j += 1;
+    } else {
+      charsWithKeys.push(char);
+    }
+  }
+
+  result = charsWithKeys.map(function(arrayOrValue) {
+    return getNewChar(arrayOrValue);
+  });
+  return result.join('');
+  
+}
+
+
+
+function getNewChar(letterAndShift) {
+  var char = letterAndShift[0];
+  var shift = letterAndShift[1];
+  var referenceStr;
+  if (alphaLower.indexOf(char) !== -1) {
+    referenceStr = alphaLower;
+  } else if (alphaUpper.indexOf(char) !== -1) {
+    referenceStr = alphaUpper;
+  } else {
+    return char;
+  }
+
+  var charIndex = referenceStr.indexOf(char);
+  var newCharIndex = charIndex + shift;
+  if (newCharIndex >= alphabetLength) {
+    newCharIndex = newCharIndex % alphabetLength;
+  }
+  return referenceStr[newCharIndex];
+}
+
+var alphabetLength = 26;
+var alphaLower = "abcdefghijklmnopqrstuvwxyz"
+var alphaUpper = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
+
+
+p(getNewChar(['z', 27])); // a
+p(vigenereEncrypt("Pineapples don't go on pizzas!", 'meat'))
+p(vigenereEncrypt('hello', 'go')) //  6 14 {h: 6, e:14, l:6, l:14, o:6}  'nsrzu' 
+p(vigenereEncrypt('a x"! Q*F', 'yes')); // 24 4 18 'y b"! I*D'
+p(vigenereEncrypt('', 'key')); //''
+p(vigenereEncrypt('wo %rd1', '')); // 'wo %rd1'
+p(vigenereEncrypt('W', 'key')); // 'G'
+
+function p(example) {
+  console.log(example);
+}
+</script>  
+</body>
+</html>

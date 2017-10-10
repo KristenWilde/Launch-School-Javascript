@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+<body>
+<script>
+/*
+I: n
+O: print a star
+R:
+n will always be odd, 7 or greater.
+middle row is n asterisks
+number of rows in addition to middle = Math.floor(n/2)
+top row: 0 spaces, asterisk, Math.floor(n / 2 - 1) spaces, asterisk, 
+  Math.floor(n / 2 - 1) spaces, asterisk.
+each row, initial spaces goes up by one.,
+  interior spaces goes down by 1.
+until interior spaces is less than 0.
+middle row.
+each row, initial spaces down by 1, interior spaces goes up by one.
+until initial spaces < 0.
+
+D:
+variables initialSpaces, interiorSpaces
+
+A:
+initialize variables
+while loop
+  log each row until middle
+log middle row
+while loop
+  log final rows.
+*/
+
+function star(n) {
+  var initialSpaces = 0;
+  var interiorSpaces = Math.floor(n / 2 - 1);
+  while (interiorSpaces >= 0) {
+    printRow();
+    if (interiorSpaces === 0) break;
+    initialSpaces += 1;
+    interiorSpaces -= 1;
+  }
+  console.log('*'.repeat(n));
+  while (initialSpaces >= 0) {
+    printRow();
+    initialSpaces -= 1;
+    interiorSpaces += 1;
+  }
+
+  function printRow(){
+    console.log(' '.repeat(initialSpaces) + '*' +
+                ' '.repeat(interiorSpaces) + '*' + 
+                ' '.repeat(interiorSpaces) + '*');
+  }
+}
+
+
+/*
+star(11)
+*....*....* row0Inside: 0 *  row0Inside: Math.floor(n / 2 - 1)  * 
+.*...*...*. row1Outside += 1 * row0Inside -= 1
+..*..*..*
+...* * *
+....***
+***********
+
+star(9)
+/*
+*...*   *
+ *  *  *
+  * * *
+   ***
+*********
+   ***
+  * * *
+ *  *  *
+*   *   *
+*/
+
+p(star(7));
+p(star(9));
+p(star(11));
+p(star(15));
+  
+
+function p(example) {
+  console.log(example);
+} 
+</script>  
+</body>
+</html>

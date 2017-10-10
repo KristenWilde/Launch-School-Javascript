@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+<body>
+<script>
+
+/*
+I: odd integer n
+O: print a diamond.
+R: 
+  variables for spaces and asterisks.
+  start with Math.floor(n/2) spaces and 1 asterisk
+  Each line, decrease spaces by 1 and increase asterisks by 2. Use string.prototype.repeat(times)
+    unti 0 spaces and n asterisks.
+  Then increase spaces by 1 each time and decrease asterisks by 2
+    until 0 asterisks.
+  
+*/
+
+function diamond(n) {
+  var stars = 1;
+  var spaces = Math.floor(n / 2);
+  while (stars < n) {
+    console.log(' '.repeat(spaces) + '*'.repeat(stars));
+    stars += 2;
+    spaces -= 1;
+  }
+  while (stars > 0) {
+    console.log(' '.repeat(spaces) + '*'.repeat(stars));
+    stars -= 2;
+    spaces += 1;
+  } 
+}
+
+diamond(1);
+diamond(3);
+diamond(9);
+
+</script>  
+</body>
+</html>

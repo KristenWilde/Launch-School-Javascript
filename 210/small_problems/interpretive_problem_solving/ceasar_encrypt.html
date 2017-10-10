@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+<body>
+<script>
+
+/*
+I: a string of one or many letters and non-letters, and a number of positions to shift in the alphabet.
+O: An encrypted string:
+R:
+Non-letter characters including spaces are left unchanged.
+The resulting characters should have the same case as the originals.
+Move "up" the number of positions in the alphabet given. 
+If you get higher than Z/z, "wrap around", ie take the remainder of division by 26.
+
+D: strings of uppercase and lowercase letters for lookup.
+
+A:
+Initialize result string
+For each character,
+if it's in alphaLower, get new character
+if it's in alphaUpper, get new character
+else concat same char to result
+return result
+
+helper function getNewChar(char, reference string)
+var wrapNumber = referenceStr.length
+var newCharIndex = . . . 
+if higher than wrapNumber, remainder.
+
+*/
+
+function getNewChar(char, referenceStr, shift) {
+  var wrapNumber = referenceStr.length;
+  var charIndex = referenceStr.indexOf(char);
+  var newCharIndex = charIndex + shift;
+  if (newCharIndex >= wrapNumber) {
+    newCharIndex = newCharIndex % wrapNumber;
+  }
+  return referenceStr[newCharIndex]
+}
+
+
+function caesarEncrypt(string, shift) {
+  var result = '';
+  var character; 
+  
+  for (var i = 0; i < string.length; i += 1) {
+    if (alphaLower.indexOf(string[i]) !== -1) {
+      character = getNewChar(string[i], alphaLower, shift);
+    } else if (alphaUpper.indexOf(string[i]) !== -1) {
+      character = getNewChar(string[i], alphaUpper, shift);
+    } else {
+      character = string[i];
+    }
+
+    result += character;
+  }
+
+  return result;
+}
+
+var alphaLower = "abcdefghijklmnopqrstuvwxyz"
+var alphaUpper = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
+
+console.log(getNewChar('a', alphaLower, 3));
+
+
+// Simple shift
+caesarEncrypt('A', 0);       // 'A'
+caesarEncrypt('A', 3);       // 'D'
+
+// Wrap around
+caesarEncrypt('y', 5);       // 'd'
+caesarEncrypt('a', 47);      // 'v'
+
+// All letters
+console.log(caesarEncrypt('ABCDEFGHIJKLMNOPQRSTUVWXYZ', 25));
+// ZABCDEFGHIJKLMNOPQRSTUVWXY
+console.log(caesarEncrypt('The quick brown fox jumps over the lazy dog!', 5) === 'Ymj vznhp gwtbs ktc ozrux tajw ymj qfed itl!');
+
+// Many non-letters
+console.log(caesarEncrypt('There are, as you can see, many punctuations. Right?; Wrong?', 2) === 'Vjgtg ctg, cu aqw ecp ugg, ocpa rwpevwcvkqpu. Tkijv?; Ytqpi?');
+
+  
+</script>
+  
+</body>
+</html>

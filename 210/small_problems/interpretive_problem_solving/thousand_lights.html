@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+<body>
+<script>
+
+/*
+Write a function lightsOn
+I: number of lights
+O: array of light numbers that are on after the process.
+R: 
+  Process: perform same number of rounds as number of lights - 1.
+  Start all lights are off (turn on for round 1).
+  Round n, switches * (n)
+  n is always 1 or more.
+
+D: array of indexes 1 to n, each holding a boolean.
+
+A: Make an array n + 1 elements, fill with false.
+    (the zero index position can be safely ignored)
+  Simulate the process with a loop.
+  Map the true's to their index number
+  Filter so only the numbers are left
+  Return.
+  
+*/  
+
+function lightsOn(n) {
+  var lights = new Array(n + 1).fill(false);
+  for (var round = 1; round <= n ; round++) { // rounds
+    for (var lightNum = round; lightNum < lights.length; lightNum += round) {
+      lights[lightNum] = !lights[lightNum];
+    }
+  }
+  var numbersOn = lights.map(function(light, index) {
+    if (light) return index;
+  }).filter(function(index) {
+    if (index) return index;
+  });
+
+  return numbersOn;
+}
+
+
+console.log(lightsOn(1)); //[1]
+console.log(lightsOn(2)); // [1]
+console.log(lightsOn(3)); // [1]
+console.log(lightsOn(4)); // [1, 4]
+console.log(lightsOn(5)); // [1, 4]
+console.log(lightsOn(100));  // [1, 4, 9, 16, 25, 36, 49, 64, 81, 100]
+</script>  
+</body>
+</html>
