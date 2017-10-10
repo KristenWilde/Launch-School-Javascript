@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+<body>
+<script>
+/*
+Write a function that takes a non-empty string argument, and returns the middle character or characters of the argument. If the argument has an odd length, you should return exactly one character. If the argument has an even length, you should return exactly two characters.
+
+I: non-empty string
+O: 1 middle char if string has odd length, or
+   2 middle chars if string has even length.
+
+A:
+Find the middleIndex, Math.floor(string.length / 2)
+if odd, return string[middleIndex]
+if even, return string.substring(middleIndex - 1, middleIndex)
+*/
+
+function centerOf(string) {
+  var middleIndex = Math.floor(string.length / 2);
+  if (string.length % 2 === 1) {
+    return string[middleIndex];
+  } else {
+    return string.substr(middleIndex - 1, 2);
+  }
+}
+
+console.log(centerOf('example'));  // 'm'
+console.log(centerOf('exampl')); //'am'
+console.log(centerOf('even'));  // 've'
+console.log(centerOf('x')); // 'x'
+
+</script>  
+</body>
+</html>

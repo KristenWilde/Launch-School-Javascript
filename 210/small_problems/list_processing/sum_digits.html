@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+<body>
+<script>
+/*
+Write a method that takes one argument, a positive integer, and returns the sum of its digits. Do this using list processing techniques.
+
+I: 1 positive integer
+O: sum of its digits
+R: use list processing techniques (array)
+
+A:
+convert number to string
+split on chars
+map to numbers
+reduce
+
+*/
+
+function sum(num) {
+  return String(num).split('').map(Number).reduce(function(accum, integer) {
+    return accum + integer;
+  });
+}
+
+console.log(sum(23));          // 5
+console.log(sum(496));         // 19
+console.log(sum(123456789));   // 45
+
+
+  
+</script>  
+</body>
+</html>
