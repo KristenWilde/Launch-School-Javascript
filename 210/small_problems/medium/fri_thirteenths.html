@@ -1,0 +1,37 @@
+/// Unlucky Days
+
+/* Write a function that returns the number of Friday the 13ths in the year 
+passed in as an argument. You may assume that the year is greater than 1752 
+(when the modern Gregorian Calendar was adopted by the United Kingdom), and you 
+may assume that the same calendar will remain in use for the foreseeable future.
+
+I: year
+O: number of Friday the 13ths
+R: year will be greater than 1752.
+
+D: Date objects for the year
+
+A: 
+Initialize result = 0
+Loop through months
+  Create a date objects representing each 13th
+  if it's a friday, increment result.
+
+*/
+
+function fridayThe13ths(year) {
+  var result = 0;
+  var thirteenthOfMonth;
+  var FRIDAY = 5;
+  for (var i=0; i <= 11; i++) {
+    thirteenthOfMonth = new Date(year, i, 13);
+    if (thirteenthOfMonth.getDay() === FRIDAY) {
+      result += 1;
+    }
+  }
+  return result;
+}
+
+console.log(fridayThe13ths(2015)); // 3
+console.log(fridayThe13ths(1986)); // 1
+console.log(fridayThe13ths(1905)); // 2

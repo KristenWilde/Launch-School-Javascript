@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+<body>
+<script>
+/*A triangle is classified as follows:
+
+Equilateral: All 3 sides are of equal length
+Isosceles: 2 sides are of equal length, while the 3rd is different
+Scalene: All 3 sides are of different length
+To be a valid triangle, the sum of the lengths of the two shortest sides must be greater than the length of the longest side, and all sides must have lengths greater than 0. If either of these conditions are not satisfied, the triangle is invalid.
+
+Write a function that takes the lengths of the 3 sides of a triangle as arguments, and returns a string 'equilateral', 'isosceles', 'scalene', or 'invalid' depending on whether the triangle is equilateral, isosceles, scalene, or invalid.
+
+I: 3 lengths
+O: 'equilateral', 'isosceles', 'scalene'
+R:
+Valid:
+  none can be zero
+  longest < shortest + middle
+equilateral - all 3 are same
+scalene - all 3 are different
+isosceles - 2 are same
+
+D: array, variables
+
+A: 
+create array of lengths and sort numerically. descending b-a
+check that last element is not 0
+first element is longest side; check longest < short + middle
+if all three are equal (just check short === long) return 'equilateral'
+if short === middle return 'isosceles'
+otherwise return scalene
+
+*/
+function triangle(side1, side2, side3) {
+  var sides = [side1, side2, side3].sort(function(a, b) { return b - a });
+  var long = sides[0];
+  var short = sides[2];
+  var middle = sides[1];
+
+  if (short <= 0 || long >= short + middle) return 'invalid'; 
+  if (short === long) return 'equilateral';
+  if (short === middle || long === middle) return 'isosceles';
+  return 'scalene'
+}
+
+
+
+console.log(triangle(3, 3, 3));   // equilateral
+console.log(triangle(3, 3, 1.5)); // isosceles
+console.log(triangle(1, 1, 1.5)); // isosceles
+console.log(triangle(3, 4, 5));   // scalene
+console.log(triangle(0, 3, 3));   // invalid
+console.log(triangle(3, 2, 5));   // invalid
+console.log(triangle(3, 1, 1));   // invalid  
+console.log(triangle(-3, 2, 1));  // invalid
+</script>  
+</body>
+</html>
