@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+<body>
+<script>
+/*
+I: template
+O: story (filled in template)
+R: program supplies lists of words in categories nouns, verbs, adjectives, adverbs.
+chooses random words from list, belonging to category specified by template.
+
+D: array
+
+A:
+Helper function provides a random index 0-4.
+
+for each word key (partOfSpeech),
+  while the string matches the word key, 
+    replace word keys in the string with random values from the partOfSpeech list.
+
+
+return the string.
+
+
+*/
+
+
+
+function madlibs(text) {
+  Object.keys(words).forEach(function(partOfSpeech) {
+    console.log(partOfSpeech);
+    while (text.match(partOfSpeech)) {
+      // console.log('we have a match');
+      text = text.replace(partOfSpeech, words[partOfSpeech][randomIndex()]);
+      // console.log(text);
+    }
+  });
+  return text;
+}
+
+function randomIndex() {
+  var randomNumInRange;
+  var MAX = 4;
+  var num;
+  while (randomNumInRange === undefined) {
+    num = Math.floor(Math.random() * 10);
+    if (num <= MAX) {
+      randomNumInRange = num;
+    }
+  }
+  return randomNumInRange;
+}
+
+var words = {
+  noun: ['hamster', 'backpack', 'panda', 'trampoline', 'program'],
+  adj: ['hungry', 'amazing', 'purple', 'bouncy', 'cuddly'],
+  adv: ['excitedly', 'noisily', 'hastily', 'lazily', 'chubbily'],
+  verb: ['runs', 'jumps', 'poops', 'swishes', 'sashays'],
+}
+
+console.log(madlibs('The adj noun verb adv until morning, when I and my noun woke up to the adj noun.')) // The hungry hamster runs noisily until morning, when I and my backpack woke up to the amazing panda.
+// console.log(madlibs('Shout out!')); // 'Shout out!'
+// console.log(madlibs('adjective')); // purpleective
+// console.log(madlibs(''));  // ''
+
+</script>
+</body>
+</html>
