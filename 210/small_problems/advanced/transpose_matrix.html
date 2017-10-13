@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+<body>
+<script>
+/*
+Transpose a 3X3 matrix.
+
+I: array containing 3 nested arrays, each with 3 elements.
+O: array containing 3 nested arrays, each with 3 elements.
+Array 0: matrix[0][0], matrix[1][0], matrix[2][0]
+Array 1: matrix[0][1], matrix[1][1], matrix[2][1]
+Array 2: matrix[0][2], matrix[1][2], matrix[2][2]
+
+D: arrays!
+A: 
+var columns = length of matrix - this tells how many elements per new array.
+var rows = Length of matrix[0] - how many new array to build.
+
+make a result array []
+For each row,
+  make an array
+  push the column elements from each array of matrix.
+
+return the result
+
+*/
+
+function transpose(matrix) {
+  var columns = matrix.length;
+  var rows = matrix[0].length;
+  var result = [];
+  for (var i = 0; i < rows; i++) {
+    result.push([]);
+    for (var j = 0; j < columns; j++) {
+      result[i][j] = matrix[j][i];
+    }
+  }
+  return result; 
+}
+
+var matrix = [
+  [1, 5, 8],
+  [4, 7, 2],
+  [3, 9, 6]
+]
+
+var matrix2 = [
+  [1, 5],
+  [8, 4],
+  [7, 2],
+  [3, 9]
+]
+
+
+
+var newMatrix = transpose(matrix)
+
+console.log(newMatrix); // [[1, 4, 3], [5, 7, 9], [8, 2, 6]]
+console.log(matrix);    // [[1, 5, 8], [4, 7, 2], [3, 9, 6]]
+  
+var newMatrix2 = transpose(matrix2)
+
+console.log(newMatrix2); // [[1, 8, 7, 3], [5, 4, 2, 9]] 
+
+console.log(transpose([[1, 2, 3, 4]]));       // [[1], [2], [3], [4]]
+console.log(transpose([[1], [2], [3], [4]])); // [[1, 2, 3, 4]]
+console.log(transpose([[1]]));                // [[1]]
+console.log(transpose([[1, 2, 3, 4, 5], [4, 3, 2, 1, 0], [3, 7, 8, 6, 2]]));
+// [[1, 4, 3], [2, 3, 7], [3, 2, 8], [4, 1, 6], [5, 0, 2]]
+</script>  
+</body>
+</html>

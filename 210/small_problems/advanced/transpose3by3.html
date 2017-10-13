@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+<body>
+<script>
+/*
+Transpose a 3X3 matrix.
+
+I: array containing 3 nested arrays, each with 3 elements.
+O: array containing 3 nested arrays, each with 3 elements.
+Array 0: matrix[0][0], matrix[1][0], matrix[2][0]
+Array 1: matrix[0][1], matrix[1][1], matrix[2][1]
+Array 2: matrix[0][2], matrix[1][2], matrix[2][2]
+
+*/
+
+function transpose(matrix) {
+  return [
+    [matrix[0][0], matrix[1][0], matrix[2][0]],
+    [matrix[0][1], matrix[1][1], matrix[2][1]],
+    [matrix[0][2], matrix[1][2], matrix[2][2]]
+  ]
+}
+
+var matrix = [
+  [1, 5, 8],
+  [4, 7, 2],
+  [3, 9, 6]
+]
+
+var newMatrix = transpose(matrix)
+
+console.log(newMatrix); // [[1, 4, 3], [5, 7, 9], [8, 2, 6]]
+console.log(matrix);    // [[1, 5, 8], [4, 7, 2], [3, 9, 6]]
+  
+</script>  
+</body>
+</html>
