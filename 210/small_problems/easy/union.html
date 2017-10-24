@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>`</title>
+</head>
+<body>
+<script>
+
+/*
+Write a function that takes two arrays as arguments, and returns an array containing the union of the values from the two. There should be no duplication of values in the returned array, even if there are duplicates in the original arrays. You may assume that both arguments will always be arrays.
+
+I: 2 arrays
+O: one new array containing all elements from both arrays with no duplicates
+R: order doesn't matter
+
+D: Array
+A: 
+Initialize a new array
+for each element in each array, 
+  if the new array doesn't have it,
+    push the element to the new array.
+Return the new array
+
+*/
+
+function union(arr1, arr2) {
+  var newArr = [];
+  [arr1, arr2].forEach(function(array){
+    array.forEach(function(element){
+      if (newArr.indexOf(element) === -1) {
+        newArr.push(element);
+      }
+    });
+  });
+  return newArr;
+}
+
+console.log(union([1, 3, 5], [3, 6, 9]));    // [1, 3, 5, 6, 9]
+console.log(union([1, 1, 3], [7, 1, 2, 1])); // [1, 3, 7, 2]
+console.log(union([], []));                 // []
+console.log(union([0, 2], []));                // [0, 2]  
+console.log(union([undefined, 1], [2]));      // [undefined, 1, 2]
+
+
+</script>  
+</body>
+</html>
