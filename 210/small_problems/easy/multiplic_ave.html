@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+<body>
+<script>
+/*
+Write a function that takes an array of integers as input, multiplies all of the integers together, divides the result by the number of entries in the array, and returns the result as a string with the value rounded to three decimal places.
+
+I: array of integers
+O: string with 3 decimal places
+R: to get average, add all integers and divide by array length.
+Validate that all inputs are integers, otherwise throw an error.
+
+D: numbers
+A: 
+Guard clause and helper method to validate integers, throwing an error
+
+Reduce integers to multiply all, divide by length, and return as .toFixed(3)
+*/
+function showMultiplicativeAverage(array) {
+  if (!allIntegers(array)) {
+    throw 'Error: non-integer input';
+  }
+  var product = array.reduce(function(accum, item) {
+    return accum * item;
+  });
+  return (product / array.length).toFixed(3);
+}
+
+function allIntegers(numArray) {
+  return numArray.every(function(num) {
+    return parseInt(num, 10) === num;
+  });
+}
+
+console.log(showMultiplicativeAverage([3, 5]));                   // "7.500"
+console.log(showMultiplicativeAverage([2, 5, 7, 11, 13, 17]));    // "28361.667"  
+console.log(showMultiplicativeAverage([0, 1, 0]));                 // "0.000"
+console.log(showMultiplicativeAverage([0]));                       // "0.000"
+console.log(showMultiplicativeAverage([97]));                      // "97.000"
+
+</script>  
+</body>
+</html>

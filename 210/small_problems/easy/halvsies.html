@@ -44,6 +44,11 @@ function halvsies(array) {
   return result;
 }
 
+function halvsies(array) {
+  var halfIndex = Math.ceil(array.length / 2);
+  return [array.slice(0, halfIndex), array.slice(halfIndex)];
+}
+
 console.log(halvsies([1, 2, 3, 4]));       // [[1, 2], [3, 4]]
 console.log(halvsies([1, 5, 2, 4, 3]));    // [[1, 5, 2], [4, 3]]
 console.log(halvsies([5]));                // [[5], []]

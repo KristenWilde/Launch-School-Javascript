@@ -31,11 +31,8 @@ return the string.
 
 function madlibs(text) {
   Object.keys(words).forEach(function(partOfSpeech) {
-    console.log(partOfSpeech);
     while (text.match(partOfSpeech)) {
-      // console.log('we have a match');
       text = text.replace(partOfSpeech, words[partOfSpeech][randomIndex()]);
-      // console.log(text);
     }
   });
   return text;

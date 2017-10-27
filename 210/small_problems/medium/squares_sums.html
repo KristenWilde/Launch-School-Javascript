@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+<body>
+<script>
+/*Write a function that computes the difference between the square of the sum of the first n positive integers and the sum of the squares of the first n positive integers.
+
+I: positive integer
+O: integer
+R: 
+get the sum of all integers 1 - n, and square it.
+get the sum of the squares of all integers 1 - n.
+find the difference.
+
+D: array of integers 1 - n
+
+A: create an array of integers 1 - n using a loop.
+sumSquared = Math.pow(integers.reduce( sum ), 2);
+sumOfSquares = reduce((sum, num) = sum += Math.pow(num, 2));
+*/
+
+function sumSquareDifference(n) {
+  var integers = [];
+  var sumSquared;
+  var sumOfSquares;
+
+  for (var i = 1; i <= n; i++) {
+    integers.push(i);
+  }
+
+  sumSquared = Math.pow(integers.reduce((sum, num) => sum + num), 2);
+  sumOfSquares = integers.reduce((sum, num) => sum + Math.pow(num, 2), 0);
+  return sumSquared - sumOfSquares;
+}
+
+
+
+console.log(sumSquareDifference(3));    // 22
+//-> (1 + 2 + 3)**2 - (1**2 + 2**2 + 3**2)
+//         6^2 = 36.     1 + 4 + 9 = 14
+//               36  -  14 = 22
+
+console.log(sumSquareDifference(10));   // 2640
+console.log(sumSquareDifference(1));    // 0
+console.log(sumSquareDifference(100));  // 25164150  
+</script>  
+</body>
+</html>

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+<body>
+<script>
+/*
+A featured number (something unique to this exercise) is an odd number that is a multiple of 7, and whose digits occur exactly once each. So, for example, 49 is a featured number, but 98 is not (it is not odd), 97 is not (it is not a multiple of 7), and 133 is not (the digit 3 appears twice).
+
+Write a function that takes a single integer as an argument, and returns the next featured number that is greater than the argument. Issue an error message if there is no next featured number.
+
+I: integer
+O: next featured number that is greater than the input.
+R: featured number is
+      multiple of 7
+      odd
+      digits occur exactly once.
+
+A: 
+helper method to check whether a number is a featured number.
+  conditionals
+  
+guard clause  
+  if n >= 9876543208 
+  throw error
+  
+var factor = Math ceil (divide input by 7) , 
+check whether (factor * 7) is a featured number. 
+If not, factor += 1
+if it is, return factor * 7.
+  
+*/
+function featured(n) {
+  if (n >= 9876543208) {
+    throw new Error('There is no featured number greater');
+  }
+  
+  var factor = Math.floor(n / 7);
+  
+  do {
+    factor += 1;
+  } while (!isFeaturedNum(factor * 7)) 
+  
+  console.log(factor * 7);
+  return factor * 7;
+}
+
+function isFeaturedNum(num) {
+  return (num % 2 !== 0) && (num % 7 === 0) && digitsOccurOnlyOnce(num);
+}
+
+function digitsOccurOnlyOnce(num) {
+  var array = String(num).split('');
+  for (var i = 0; i < array.length; i++) {
+    if (array.lastIndexOf(array[i]) !== i) { return false }; 
+  }
+  return true;
+}
+  
+console.log(isFeaturedNum(21));
+console.log(isFeaturedNum(12));
+ 
+featured(12)        // 21
+featured(20)        // 21
+featured(21)        // 35
+featured(997)       // 1029
+// 143 * 7 = 1001   
+// 144 * 7 = 1008
+// 145 * 7 = 1015
+//
+// 147 * 7 = 1029
+
+featured(1029)      // 1043
+featured(999999)    // 1023547
+featured(999999987) // 1023456987
+featured(98789878987)
+  
+
+</script>
+</body>
+</html>

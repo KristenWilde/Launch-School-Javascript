@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+<body>
+<script>
+/*
+Write a function that takes one argument, an array containing integers, and returns the average of all the integers in the array, rounded down to the integer component of the average. The array will never be empty, and the numbers will always be positive integers.
+
+I: array of positive integers
+O: average, rounded down to integer. Math.floor
+
+*/
+
+function average(array) {
+  return Math.floor(array.reduce((sum, num) => sum + num ) / array.length);
+}
+
+console.log(average([1, 5, 87, 45, 8, 8]));       // 25
+console.log(average([9, 47, 23, 95, 16, 52]));    // 40
+console.log(average([4])); // 4
+  
+</script>
+</body>
+</html>

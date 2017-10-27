@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+<body>
+<script>
+/*
+Write a function that takes two array arguments, each containing a list of numbers, and returns a new array that contains the product of each pair of numbers from the arguments that have the same index. You may assume that the arguments contain the same number of elements.
+
+
+I: two arrays of the same length, each containing a list of numbers.
+O: an array containing the product of each pair with the same index.
+
+D: new array
+A: map a new array from arr1, using the index, returning the product of the two 
+items, one from each array at that index.
+
+*/
+
+function multiplyList(arr1, arr2) {
+  return arr1.map(function(num, index) {
+    return num * arr2[index];
+  });
+}
+
+console.log(multiplyList([3, 5, 7], [9, 10, 11]));    // [27, 50, 77]
+console.log(multiplyList([0, -2, .5], [1, 1, 1]));   // [0, -2, .5]
+console.log(multiplyList([6], [9]));   // [54]
+console.log(multiplyList([], []));  // []
+  
+</script>  
+</body>
+</html>

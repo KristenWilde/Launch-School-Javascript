@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+<body>
+<script>
+/*
+Write a function that combines two arrays passed as arguments, and returns a new array that contains all elements from both array arguments, with each element taken in alternation.
+
+You may assume that both input arrays are non-empty, and that they have the same number of elements.
+
+I: 2 non-empty arrays with the same number of elements
+O: a new array taking the first element from each, second element of each, etc.
+
+D: array
+A: 
+Could use loop, forEach with index, map, 
+
+Initialize new array
+Loop through the index numbers of the first array
+  concat elements of each array to new array.
+
+*/
+
+function interleave(arr1, arr2) {
+  var result = [];
+  for (var i = 0; i < arr1.length; i++) {
+    result.push(arr1[i], arr2[i]);
+  }
+  return result;
+}
+
+console.log(interleave([1, 2, 3], ['a', 'b', 'c']));    // [1, "a", 2, "b", 3, "c"]
+console.log(interleave([0, null, 0, 8, undefined], [1, 1, 1, 1, 1])); //[0, 1, null, 1, 8, 1, undefined, 1]
+console.log(interleave(['a'], ['b'])); // ['a', 'b']
+
+</script>  
+</body>
+</html>

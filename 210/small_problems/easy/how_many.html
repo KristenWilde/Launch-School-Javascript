@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+<body>
+<script>
+/*
+Write a function that counts the number of occurrences of each element in a given array. Once counted, log each element alongside the number of occurrences.
+
+Example:
+
+
+
+// console output
+car => 4
+truck => 3
+SUV => 1
+motorcycle => 2
+
+I: array
+O: logs to console in given format, indicating how many occurences of each different element in the array.
+
+D: object
+A:
+Initialize empty object 'data'
+For each item in array, 
+  if data keys contains the item, data[item] is incrememented.
+  if it does not, data[item] = 1.
+
+For each key in data, 
+  console.log the key.toString + '=>' + data[key]
+*/
+
+function countOccurrences(array) {
+  var data = {};
+  array.forEach(function(item) {
+    item = String(item);
+    if (Object.keys(data).indexOf(item) === -1) {
+      data[item] = 1;
+    } else {
+      data[item] += 1;
+    }
+  });
+
+  Object.keys(data).forEach(function(key) {
+    console.log( key.toString() + ' => ' + data[key] );
+  });
+}
+
+
+var vehicles = ['car', 'car', 'truck', 'car', 'SUV', 'truck',
+                'motorcycle', 'motorcycle', 'car', 'truck'];
+countOccurrences(vehicles);
+/*
+car => 4
+truck => 3
+SUV => 1
+motorcycle => 2
+*/
+
+var numbers = [4, 4, 1, 2, 2, 0, -7, undefined, null, undefined, null, 2]
+countOccurrences(numbers);
+/*
+4 => 2
+1 => 1
+2 => 3
+0 => 1
+-7 => 1
+undefined => 1
+null => 1
+*/
+
+
+  
+</script>  
+</body>
+</html>
