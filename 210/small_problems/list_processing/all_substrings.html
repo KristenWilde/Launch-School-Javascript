@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+<body>
+<script>
+/*
+Write a function that returns a list of all substrings of a string. Order the returned list by where in the string the substring begins. This means that all substrings that start at position 0 should come first, then all substrings that start at position 1, and so on. Since multiple substrings will occur at each position, return the substrings at a given position from shortest to longest.
+
+You may (and should) use the substringsAtStart function you wrote in the previous exercise.
+
+I: string
+O: array of substrings,
+starting with all substrings beginning at index 0, then those from index 1, 
+etc.
+
+D: array
+A: 
+initialize new array
+loop through string, 
+  getting substring from current index to end, assing to variable. 
+  get substringsAtStart from that value and push to new array.
+
+return new array
+*/
+
+function substrings(string) {
+  var result = [];
+  var currentSubstring;
+
+  for (var i = 0; i < string.length; i++) {
+    currentSubstring = string.slice(i, string.length);
+    result = result.concat(substringsAtStart(currentSubstring));  
+  }
+
+  return result;
+}
+
+
+function substringsAtStart(string) {
+  var result = [];
+  for (var i = 1; i <= string.length; i++) {
+    result.push(string.substring(0, i));
+  }
+  return result;
+}
+
+console.log(substrings('abcde'));
+
+// returns
+[ "a", "ab", "abc", "abcd", "abcde",
+  "b", "bc", "bcd", "bcde",
+  "c", "cd", "cde",
+  "d", "de",
+  "e" ]
+
+console.log(substrings('1')); // ['1']
+console.log(substrings('kri')); // ['k', 'kr', 'kri', r, ri, i]
+  
+</script>  
+</body>
+</html>

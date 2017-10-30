@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+<body>
+<script>
+/*
+Write a function that takes a string argument, and returns a list of all substrings that start from the beginning of the string, ordered from shortest to longest.
+
+I: string
+O: array of substrings
+
+D: array of strings
+A:
+split to chars
+map each char to its substring using slice and join
+
+Or
+Initialize new array
+loop through string indexes, adding substrings using .substring
+*/
+
+function substringsAtStart(string) {
+  var result = [];
+  for (var i = 1; i <= string.length; i++) {
+    result.push(string.substring(0, i));
+  }
+  return result;
+}
+
+console.log(substringsAtStart('abc'));      // ["a", "ab", "abc"]
+console.log(substringsAtStart('a'));        // ["a"]
+console.log(substringsAtStart('xyzzy'));    // ["x", "xy", "xyz", "xyzz", "xyzzy"]
+console.log(substringsAtStart('He110 World')); // ['H', 'He', 'He1']
+</script>  
+</body>
+</html>
