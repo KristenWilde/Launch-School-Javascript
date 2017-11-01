@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+<body>
+<script>
+/*
+Write a function that takes a single string argument and returns a new string that contains the original value of the argument with the first character of every word capitalized and all succeeding characters in lowercase.
+
+You may assume that words are any sequence of non-blank characters.
+
+I: string of words separated by spaces
+O: string with same characters but first char of each word is capitalized,
+all succeeding chars lowercase.
+- even if first char is non-letter
+- even if later chars of a word are originally uppercase.
+
+D: array
+A:
+
+split the string to words array.
+tranform such that first char is uppercase, others lowercase
+  return word[0].toUpperCase + word.substring(1).toLowerCase
+
+*/
+
+function wordCap(sentence) {
+  return sentence.split(' ').map(function(word) {
+    return word[0].toUpperCase() + word.substring(1).toLowerCase();
+  }).join(' ');
+}
+
+console.log(wordCap('four score and seven'));    // 'Four Score And Seven'
+console.log(wordCap('the javaScript language')); // 'The Javascript Language'
+console.log(wordCap('this is a "quoted" word')); // 'This Is A "quoted" Word'
+
+</script>  
+</body>
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+<body>
+<script>
+/*
+Write a function that takes an array of strings, and returns an array of the same string values without the vowels (a, e, i, o, u).
+
+I: array of string
+O: same strings without a, e, i, o, u, A, E, I, O, U
+don't mutate array
+
+D: array
+A: transform array using replace(pattern for vowels upper & lowercase/g, '' )
+*/
+
+function removeVowels(words) {
+  return words.map(function(word) {
+    return word.replace(/[aeiouAEIOU]/g, '');
+  });
+}
+
+
+console.log(removeVowels(['abcdefghijklmnopqrstuvwxyz']));             // ['bcdfghjklmnpqrstvwxyz']
+console.log(removeVowels(['green', 'YELLOW', 'black', 'white']));      // ['grn', 'YLLW', 'blck', 'wht']
+console.log(removeVowels(['ABC', 'AEIOU', 'XYZ']));     // ['BC', '', 'XYZ']
+</script>  
+</body>
+</html>

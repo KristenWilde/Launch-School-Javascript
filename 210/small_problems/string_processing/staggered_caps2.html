@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+<body>
+<script>
+/*
+Modify the function from the previous exercise so it ignores non-alphabetic characters when determining whether it should uppercase or lowercase each letter. The non-alphabetic characters are still included in the return value; they just don't count when toggling the desired case.
+
+I: string
+O: string with same chars, but modify alphabetic chars only. Every other alphabetic
+char switches upper/lowecase.
+Keep non-alphabetic chars as is.
+
+D: array of chars
+A:
+initialize var uppercase = true
+split to chars
+transform array. 
+  if matches [A-Za-z], 
+    if upper 
+      return char.toUppercase
+    else 
+      return char.toLowerCase
+    }
+    upper = !upper
+  }
+  else return char
+join('')
+*/
+
+function staggeredCase(string) {
+  var upperCase = false;
+  return string.split('').map(function(char) {
+    if (char.match(/[A-Za-z]/)) {
+      upperCase = !upperCase
+      return upperCase ? char.toUpperCase() : char.toLowerCase(); 
+    } else {
+      return char;
+    }
+  }).join('');
+}
+
+console.log(staggeredCase('I Love Launch School!'));     // 'I lOvE lAuNcH sChOoL!'
+console.log(staggeredCase('ALL CAPS'));                  // 'AlL cApS'
+console.log(staggeredCase('ignore 77 the 444 numbers')); // 'IgNoRe 77 ThE 444 nUmBeRs'  
+</script>  
+</body>
+</html>
