@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+<body>
+<script>
+/*
+
+*/
+
+function makeAccount(number) {
+  var balance = 0;
+  var transactions = [];
+
+  return {
+    deposit: function(amt) {
+      balance += amt;
+      transactions.push( { type: 'deposit', amount: amt } );
+      return amt;
+    },
+    withdraw: function(amt) {
+      if (balance < amt) {
+        amt = balance;
+      }
+      balance -= amt;
+      transactions.push( { type: 'withdraw', amount: amt } );
+      return amt;
+    },
+    balance: function() {
+      return balance;
+    },
+    number: function() {
+      return number;
+    },
+    transactions: function() {
+      return transactions;
+    }
+  }
+}
+
+function makeBank() {
+  var nextAcctNumber = 101;
+  var accounts = [];
+
+  return {
+    openAccount: function() {
+      var newAccount = makeAccount(nextAcctNumber);
+      nextAcctNumber += 1;
+      accounts.push(newAccount);
+    },
+    transfer: function(source, destination, amt) {
+      return destination.deposit(source.withdraw(amt);
+    }
+  }
+}
+
+var bank = makeBank();
+var myAccount = bank.openAccount();
+
+
+</script>  
+</body>
+</html>

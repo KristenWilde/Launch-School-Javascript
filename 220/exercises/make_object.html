@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+<body>
+<script>
+
+function makeCountry(name, continent, visited=false) { // supplying default val for ES6
+/*if (visited === undefined) {      // supplying default value for ES5
+    visited = false;
+  }
+*/
+  return {
+    name: name,
+    continent: continent,
+    visited: visited,
+    getDescription: function() {
+      var description = this.name + " is located in " + this.continent + '.';
+      if (this.visited) {
+        description += 'I have visited ' + this.name;
+      } else {
+        description += 'I haven\'t visited ' + this.name;
+      }
+      return description;
+    },
+    visitCountry: function() {
+      this.visited = true;
+    }
+  }
+}
+
+</script>
+</body>
+</html>
