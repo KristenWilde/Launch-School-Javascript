@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+<body>
+<script>
+/*
+create a new instance of an object, without having direct access to the constructor function:
+*/
+var ninjaA = (function() {
+  function Ninja(){};
+  return new Ninja();
+})();
+
+var ninjaB = new ninjaA.constructor();
+
+console.log(ninjaB.constructor === ninjaA.constructor)    // this should be true  
+</script>  
+</body>
+</html>

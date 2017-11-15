@@ -7,6 +7,76 @@
 <body>
 <script>
 
+var drill = {
+  id: 1,
+  name: 'Cordless Drill',
+  stock: 15,
+  price: 45,
+  describeProduct: function() {
+    console.log('Name: ' + this.name);
+    console.log('ID: ' + this.id);
+    console.log('Price: $' + this.price);
+    console.log('Stock: ' + this.stock);
+  },
+  setPrice: function(newPrice) {
+    if (newPrice < 0) {
+      console.log('Price is invalid. Must be greater than 0.');
+      return;
+    }
+    return this.price = newPrice;
+  }  
+};
+
+function setPrice(product, newPrice) {
+  if (newPrice < 0) {
+    console.log('Price is invalid. Must be greater than 0.');
+    return;
+  }
+  return product.price = newPrice;
+}
+
+function describeProduct(product) {
+  console.log('Name: ' + product.name);
+  console.log('ID: ' + product.id.toString());
+  console.log('Price: $' + product.price.toString());
+  console.log('Stock: ' + product.stock.toString());
+}
+
+function createProduct(id, name, stock, price) {
+  return {
+    id: id,
+    name: name,
+    stock: stock,
+    price: price,
+    describeProduct: function() {
+      console.log('Name: ' + this.name);
+      console.log('ID: ' + this.id);
+      console.log('Price: $' + this.price);
+      console.log('Stock: ' + this.stock);
+    },
+    setPrice: function(newPrice) {
+      if (newPrice < 0) {
+        console.log('Price is invalid. Must be greater than 0.');
+        return;
+      }
+      return this.price = newPrice;
+    }  
+  };
+}
+
+var scissors = createProduct(0, 'Scissors', 15, 9);
+describeProduct(scissors);
+setPrice(scissors, -5);
+describeProduct(scissors);
+setPrice(scissors, 12);
+describeProduct(scissors);
+
+var saw = createProduct(2, 'Hand Saw', 13, 25);
+var drywall_kit = createProduct(3, 'Drywall Repair Kit', 6, 8);
+describeProduct(saw);
+describeProduct(drywall_kit);
+
+
 function makeCountry(name, continent, visited=false) { // supplying default val for ES6
 /*if (visited === undefined) {      // supplying default value for ES5
     visited = false;

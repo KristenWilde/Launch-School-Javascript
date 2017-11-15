@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+<body>
+<script>
+/*
+Write a JavaScript function named delayLog that loops through the numbers from 1 to 10, and logs each number after that number of seconds. It should log 1 after 1 second, 2 after 2 seconds, etc.
+
+I: none
+O: after 1 sec, log 1. after 2 sec, log 2, etc up to 10. 
+
+D: recursive function
+A: set timeout to 1000, call the function again.
+
+*/
+var count = 1;
+
+function delayLog() {
+  if (count > 10) return;
+
+  setTimeout(delayLog, 1000);
+
+  console.log(count)
+  count += 1;
+}
+
+//Problem 3: g f d n s q
+
+/*Write a Function named afterNSeconds that takes two arguments: a callback and time in seconds. The function should wait for the indicated period, then invoke the callback function.
+I: callback and n seconds.
+O: wait for n seconds, than invoke the callback.
+
+A:
+*/
+
+function callMeBack() {
+  console.log('I was called.')
+}
+
+function afterNSeconds(callback, n) {
+  setTimeout(callback, n * 1000);
+}
+
+/*Write a function named startCounting that logs a number to the console every second, starting with 1. Each number should be one greater than the previous number.
+
+*/
+
+var stopId;
+
+function startCounting() {
+  var count = 1;
+
+  function logAndIncrement() {
+    console.log(count);
+    count += 1;
+  }
+
+  stopId = setInterval(logAndIncrement, 1000);
+}
+
+function stopCounting() {
+  clearInterval(stopId);
+}
+
+</script>  
+</body>
+</html>

@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+<body>
+<script>
+
+var invoice = {
+  phone: 3000,
+  internet: 6500
+};
+var payment = {
+  phone: 1300,
+  internet: 5500
+};
+//var invoiceTotal = invoice.phone + invoice.internet; //
+//var paymentTotal = payment.phone + payment.internet;
+//var remainingDue = invoiceTotal - paymentTotal;
+
+//console.log(paymentTotal);         // 6800
+//console.log(remainingDue);         // 2700
+/*
+To be able to process multiple invoices, we'll need to have a factory method that we can use to create invoices. The requirements for this factory function are the following:
+
+I: object which can override the defaults.
+O: an invoice object
+  properties: 
+    phone, 
+    internet, 
+    total method: returns this.phone + this.internet
+  defaults: 
+    phone 3000, 
+    internet 5500
+
+D: object as described above.
+
+
+*/
+function createInvoice(services) {
+  var PHONE_DEFAULT = 3000;
+  var INTERNET_DEFAULT = 5500;
+  var services = services || {};
+  var invoice = {};
+
+  invoice.phone = services.phone || PHONE_DEFAULT;
+  invoice.internet = services.internet || INTERNET_DEFAULT;
+  invoice.total = function() {
+    return this.phone + this.internet;
+  },
+  invoice.payments = [];
+  invoice.addPayment = function(paymentObj) {
+
+  },
+  invoice.addPayments = function(paymentsArr) {
+
+  },
+  invoice.amountDue = function() {
+    // paymentTotal = add up the amounds of all the payments.
+    // return this.total() - paymentTotal;
+  }
+
+  return invoice;
+}
+
+function invoiceTotal(invoices) {
+  var total = 0;
+  for (var i = 0; i < invoices.length; i++) {
+    total += invoices[i].total();
+  }
+
+  return total;
+}
+
+var invoices = [];
+invoices.push(createInvoice());
+invoices.push(createInvoice({
+ internet: 6500
+}));
+
+invoices.push(createInvoice({
+ phone: 2000
+}));
+
+invoices.push(createInvoice({
+  phone: 1000,
+  internet: 4500
+}));
+
+console.log(invoiceTotal(invoices));             // 31000  
+
+/*
+Now let's build a factory function to create payments. The function can take an object argument in one of the 3 forms:
+
+payment for one service, such as, {internet: 1000}, {phone: 1000}
+payment for both services, such as, {internet: 2000, phone: 1000}
+payment with just an amount property, such as {amount: 2000}.
+and should return an object that has paid services, and a total method that returns the payment total. If the amount property is not present, this should return the sum of phone and internet services; if the amount property is present, just return the value of that property.
+
+I: object with an amount property, or one service, or both services.
+O: object with properties:
+    phone:
+    internet:
+    total: function phone + internet, or if amount property is present, just return this.
+*/
+function createPayment(services) {
+  services = services || {};
+  services.total = function() {
+    return this.amount || (this.phone || 0) + (this.internet || 0);
+  }
+  return services;
+}
+
+function paymentTotal(payments) {
+  var total = 0;
+  for (var i = 0; i < payments.length; i++) {
+    total += payments[i].total();
+  }
+
+  return total;
+}
+
+var payments = [];
+payments.push(createPayment());
+payments.push(createPayment({
+  internet: 6500
+}));
+
+payments.push(createPayment({
+  phone: 2000
+}));
+
+payments.push(createPayment({
+  phone: 1000, internet: 4500
+}));
+
+payments.push(createPayment({
+  amount: 10000
+}));
+
+console.log(paymentTotal(payments));      // 24000
+
+/*
+Update your createInvoice function to make it possible to add payment(s) to invoices. Use the code below as a guideline:
+*/
+var myInvoice = createInvoice({
+  phone: 1200,
+  internet: 4000
+});
+
+var payment1 = createPayment({
+  amount: 2000
+});
+
+var payment2 = createPayment({
+  phone: 1000,
+  internet: 1200
+});
+
+var payment3 = createPayment({
+  phone: 1000
+});
+
+console.log(myInvoice.addPayment(payment1)); // undefined
+console.log(myInvoice.addPayments([payment2, payment3])); // undefined
+console.log(myInvoice.amountDue());       // this should return 0
+
+</script>  
+</body>
+</html>

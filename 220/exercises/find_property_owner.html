@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+<body>
+<script>
+
+function getDefiningObject(object, propKey) {   // attempt at recursive function
+  if (object.hasOwnProperty(propKey)) {
+    return object;
+  } else {
+    var directPrototype = Object.getPrototypeOf(object)
+    console.log('direct prototype of ' + object + ' is ' + directPrototype);
+    getDefiningObject(directPrototype, propKey);
+  }
+}
+
+function getDefiningObject(object, propKey) {
+  var checkObj = object;
+  while (!checkObj.hasOwnProperty(propKey)) {
+    checkObj = Object.getPrototypeOf(checkObj);
+    if (checkObj === null) {
+      break;
+    }
+  }
+  return checkObj;
+}
+
+var foo = {
+  a: 1,
+  b: 2
+};
+
+var bar = Object.create(foo);
+var baz = Object.create(bar);
+var qux = Object.create(baz);
+
+bar.c = 3;
+qux.d = 4;
+
+console.log(getDefiningObject(qux, 'd') === qux);     // qux
+console.log(getDefiningObject(qux, 'c') === bar);     // bar
+console.log(getDefiningObject(qux, 'a') === foo);     // foo
+console.log(getDefiningObject(qux, 'e'));             // null  
+
+</script>  
+</body>
+</html>
