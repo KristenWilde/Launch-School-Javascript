@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+<body>
+<script>
+/*
+create a function that constructs a new object with a log method that is read-only. The log method will use console.log to output the name property on itself.
+*/
+
+
+function newPerson(name) {
+  var person = { name: name };
+  Object.defineProperties(person, {
+    log: {
+      value: function() {
+        console.log(person.name);
+      },
+      writable: false
+    }
+  });
+  return person;
+}
+
+
+
+var me = newPerson('Shane Riley');
+me.log();     // Shane Riley
+me.log = function() { console.log("Amanda Rose"); };
+me.log();     // Shane Riley  
+</script>  
+</body>
+</html>

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <style>
+input {
+
+}    
+
+  </style>
+</head>
+<body>
+
+  <form action="" method="get">
+    <input type="text" id="letter" maxlength="1">
+    <input type="submit">
+  </form>
+
+  <a href="#">Anchor</a>
+  <div id="accordion">
+    <p>Text in the accordion</p>
+  </div>
+
+  <script>
+
+
+$(function() {
+
+  $('form').submit(function(e) {
+    e.preventDefault();
+    
+    var keyCode = $('#letter').val().charCodeAt(0);
+    console.log(keyCode);
+
+    $(document).on('keypress', function(e) {
+    e.stopPropagation();
+
+    console.log(e.which);    
+    if (e.which !== keyCode) {
+      return;
+    }
+
+    $('a').trigger('click');
+  }), true;
+
+  $('a').on('click', function(e) {
+    e.preventDefault();
+    $('#accordion').slideToggle();
+  })
+});
+  });
+
+  
+
+</script>
+  
+</body>
+</html>

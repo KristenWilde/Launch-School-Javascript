@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+<body>
+<script>
+/*
+Start by creating a function named Vehicle that will be used to create new vehicle objects. Define the Vehicle prototype to include properties for doors and wheels, both set to 4.*/
+
+function Vehicle() {
+}
+
+Vehicle.prototype = {
+  doors: 4,
+  wheels: 4
+}
+
+var sedan = new Vehicle;
+var coupe = new Vehicle;
+/*
+Create a new instance of the Vehicle object and assign it to a variable named sedan. Create a separate instance in a variable named coupe. Change the doors property on the coupe object to 2. Log the value of sedan.hasOwnProperty("doors") and coupe.hasOwnProperty("doors"). 
+*/
+coupe.doors = 2;
+console.log(sedan.hasOwnProperty('doors'));
+console.log(coupe.hasOwnProperty('doors'));
+
+/*
+Create two new constructors for Coupe and Motorcycle. Have both inherit from the Vehicle prototype by setting the prototype of each to a new instance of Vehicle. */
+
+function Coupe() { 
+}
+
+Coupe.prototype = new Vehicle;
+Coupe.prototype.doors = 2;
+
+function Motorcycle() {
+}
+
+Motorcycle.prototype = new Vehicle;
+Motorcycle.prototype.wheels = 2;
+Motorcycle.prototype.doors = 0;
+
+var littleCar = new Coupe;
+var harley = new Motorcycle;
+console.log(littleCar instanceof Vehicle);
+console.log(harley instanceof Vehicle);
+
+/*
+Set their constructor properties back to their own named functions, which will allow instances of each constructor to display that it is a type of Coupe or Motorcycle rather than Vehicle. Create an instance of coupe and motorcycle and log both to verify they are different object types. Check the coupe's instanceof (coupe instanceof Coupe) against the Coupe, Vehicle, and Motorcycle constructors to see how the prototypes are inherited.  
+*/
+</script>  
+</body>
+</html>

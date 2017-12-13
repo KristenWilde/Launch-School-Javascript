@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+<body>
+<script>
+/*
+Create a function neww, so that it works like the new operator:
+*/
+function neww(constructor, args) {
+  var newObj = Object.create(constructor.prototype);
+  constructor.apply(newObj, args);
+  return newObj;
+}
+
+function Person(firstName, lastName) {
+  this.firstName = firstName;
+  this.lastName = lastName;
+}
+
+Person.prototype.greeting = function() {
+  console.log('Hello, ' + this.firstName + ' ' + this.lastName);
+}
+
+var john = neww(Person, ['John', 'Doe']);
+john.greeting();          // Hello, John Doe
+console.log(john.constructor);         // Person(firstName, lastName) {...}  
+
+</script>  
+</body>
+</html>

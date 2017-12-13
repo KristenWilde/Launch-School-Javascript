@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+<body>
+<script>
+/*
+Create a function that can create an object with a given object as its prototype, without using Object.create.
+*/
+
+function createObject(obj) {
+  var Temp = new Function();
+  Temp.prototype = obj;
+  return new Temp();
+}
+
+var foo = {
+  a: 1
+};
+
+var bar = createObject(foo);
+console.log(foo.isPrototypeOf(bar));         // true  
+</script>  
+</body>
+</html>

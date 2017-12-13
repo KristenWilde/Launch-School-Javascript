@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <style>
+body {
+  background-color: #7CD0B9;
+  color: #4CA990;
+  font-family: helvetica, arial, sans-serif;
+}
+input {
+  padding: 10px;
+  width: 100%;
+  margin: 5px 0 10px;
+  box-sizing: border-box;
+  font-size: 1rem;
+}
+#quantity {
+  width: 70px;
+}
+fieldset {
+  border: none;
+  margin: 0;
+  padding: 0;
+}
+input[type=submit] {
+  background-image: linear-gradient(#F2B6A5, #F28261);
+  color: #fff;
+  text-align: center;
+}
+label {
+  display: block;
+}
+main {
+  background-color: #fff;
+  width: 400px;
+  padding: 15px;
+  margin: 20px auto;
+  box-sizing: border-box;
+}
+h1 {
+  color: #F28261;
+  margin: 20px 0 5px;
+  text-align: center;
+}
+li + li {
+  border-top: 1px solid #ddd;
+}
+li {
+  padding: 10px;
+}
+@media print {
+  form {
+    display: none;
+  }
+  body {
+    color: #000;
+  }
+  h1 {
+    color: #ccc;
+  }
+}
+
+  </style>
+</head>
+<body>
+  <main>
+    <form action="">
+      <h2>Add an item</h2>
+      <fieldset>
+        <label for="name">Item name</label>
+        <input type="text" id="name"/>
+        <label for="quantity">Quantity</label>
+        <input type="number" id="quantity"/>
+        <input type="submit" value="Add"/>
+      </fieldset>
+    </form>
+    <h1>Groceries</h1>
+    <ul>
+      
+    </ul>
+  </main>
+  <script>
+$(function() {
+  $('form').submit(function(e) {
+    e.preventDefault();
+    var name = $('#name').val();
+    var quantity = $('#quantity').val() || '1';
+    var newLI = '<li>' + quantity + ' ' + name + '</li>';
+    $('ul').append(newLI);
+    this.reset();
+  });
+
+});    
+  </script>
+
+  
+</body>
+</html>

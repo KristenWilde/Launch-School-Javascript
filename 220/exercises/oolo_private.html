@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+<body>
+<script>
+var Car = {
+  init: function(make, model, year) {
+    this.make   = make;
+    this.model  = model;
+    this.year   = year;        
+  },
+  sayCar: function() {
+    alert('I have a ' + this.year + ' ' + this.make + ' ' + this.model + '.');  
+  }
+};  
+
+
+function initializeMileage(mileage, carObj) {
+  carObj.sayMileage = function() {
+    alert('The mileage is ' + String(mileage));
+  };
+  carObj.addMiles = function(miles) {
+    mileage += miles;
+  }
+}
+
+var johnCar = Object.create(Car)//.init(2016, 'Toyota', 'Prius');
+initializeMileage(20854, johnCar);
+
+</script>  
+</body>
+</html>

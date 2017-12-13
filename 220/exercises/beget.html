@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+<body>
+<script>
+/*
+create a begetObject function that you can call on any object to create an object inherited from it:
+*/
+
+Object.prototype.begetObject = function() {
+  return Object.create(this);
+}
+
+var foo = {
+  a: 1,
+};
+
+var bar = foo.begetObject();
+console.log(foo.isPrototypeOf(bar));         // true  
+
+
+</script>
+  
+</body>
+</html>
