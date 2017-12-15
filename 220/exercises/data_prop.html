@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Data property</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+  <style>
+
+main {
+  width: 600px;
+  margin: 0 auto;
+}
+li {
+  display: inline-block;
+  height: 40px;
+  width: 140px;
+  border: 1px solid gray;
+  border-radius: 5px 5px 0 0;
+}
+.content {
+  height: 400px;
+  border: 1px solid gray;
+}
+.hidden {
+  display: none;
+}
+
+
+  </style>
+</head>
+<body>
+  <main>
+    <ul>
+      <li><a href="#" data-block="gold">Gold Sponsors</a></li>
+      <li><a href="#" data-block="silver">Silver Sponsors</a></li>
+      <li><a href="#" data-block="bronze">Bronze Sponsors</a></li>
+    </ul>
+    <div class="content">
+      <article data-block="gold">
+        <h1>Gold Sponsors</h1>
+      </article>
+
+      <article data-block="silver" class="hidden">
+        <h1>Silver Sponsors</h1>
+      </article>
+
+      <article data-block="bronze" class="hidden">
+        <h1>Bronze Sponsors</h1>
+      </article>
+    </div>
+  </main>
+  <script>
+    $(function() {
+      $('a').on('click', function(e) {
+        e.preventDefault();
+    
+        $('article').hide().filter('[data-block=' + $(this).attr('data-block') + ']').show();
+      });
+    });
+  </script>
+</body>
+</html>
