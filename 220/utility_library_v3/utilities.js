@@ -19,12 +19,25 @@ var _ = function(obj) {
     lastIndexOf: function(val) {
       return obj.lastIndexOf(val);
     },
-    sample: function(num) {
-      if (num === undefined) return obj[0];
-      var result = []; 
-      for (var i = 0; i < num; i++) {
-        result.push(obj[i]);
+    sample: function(qty) {
+      var result = [];
+      var copy = obj.slice(); 
+
+      function get() {
+        var idx = Math.floor(Math.random() *  copy.length);
+        var element = copy[idx];
+        copy.splice(idx, 1);
+        return element;
       }
+
+      if (qty === undefined) {
+        return get();
+      }
+
+      for (var i = 0; i < qty; i++) {
+        result.push(get());
+      }
+      console.log(result);
       return result;
     },
     findWhere: function(propertiesObj) {
@@ -86,21 +99,20 @@ var _ = function(obj) {
       return result;
     },
     has: function(propName) {
-      if (obj[propName]) return true;
-    },
-    isElement: isElement,
-    isArray: isArray,
-    isObject: isObject,
-    isFunction: isFunction,
-    isBoolean: isBoolean,
-    isString: isString,
-    isNumber: isNumber,
+      return {}.hasOwnProperty.call(obj, propName);
+    }
   };
+
+  ['isElement', 'isArray', 'isObject', 'isFunction', 'isBoolean', 
+  'isString', 'isNumber'].forEach(function(methodName) {
+    u[methodName] = _[methodName];
+  });
+
   return u;
 };
 
 _.range = function(firstVal, lastVal) {
-  if (!lastVal) {
+  if (lastVal === undefined) {
     lastVal = firstVal;
     firstVal = 0;
   }
@@ -120,40 +132,30 @@ _.extend = function(firstObj) {
   return firstObj;
 }
 
-_.isElement = isElement;
-_.isArray = isArray;
-_.isObject = isObject;
-_.isFunction = isFunction;
-_.isBoolean = isBoolean; 
-_.isString = isString; 
-_.isNumber = isNumber;
-
-function isElement(thing) {
-  return !!thing.nodeType;
+_.isElement = function(thing) {
+  return thing.nodeType === 1;
 }
 
-function isArray(thing) {
-  return Array.isArray(thing);
-}
+_.isArray = Array.isArray || function(thing) {
+  return toString.call(thing) === '[object Array]';
+};
 
-function isObject(thing) {
+_.isObject = function(thing) {
   return typeof thing === 'function' || typeof thing === 'object';
-}
+};
 
-function isFunction(thing) {
+_.isFunction = function(thing) {
   return typeof thing === 'function';
-}
+};
 
-function isBoolean(thing) {
+_.isBoolean = function(thing) {
   return thing.toString() === 'true' || thing.toString() === 'false';
-}
+};
 
-function isString(thing) {
+_.isString = function(thing) {
   return typeof thing === 'string' || thing instanceof String;
-}
+}; 
 
-function isNumber(thing) {
+_.isNumber = function(thing) {
   return typeof thing === 'number' || thing instanceof Number;
-}
-
-var a = [1, 2, 3, 4, 5];
+};
