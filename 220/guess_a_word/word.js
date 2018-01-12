@@ -1,5 +1,4 @@
 
-console.log('I\'m loaded');
 var $message = $('#message');
 var $apples = $('#apples');
 var $letters = $('#spaces');
@@ -20,7 +19,6 @@ var randomWord = function() {
 var Game = {
   incorrectGuesses: 0,
   lettersGuessed: [],
-  // currentWord: randomWord().split('') || this.displayMessage("Sorry, I've run out of words."),
   wrongGuessesAllowed: 6,
   createBlanks: function() {
     $letters.find('span').remove();
@@ -39,13 +37,15 @@ var Game = {
       this.incorrectGuesses += 1;
       this.updateApples();
       if (this.incorrectGuesses >= this.wrongGuessesAllowed) {
-        this.gameOver('lose');
+        this.gameStatus = 'lose';
+        this.gameOver();
         return;
       }
     } else {
       this.fillBlanksFor(letter);
       if (this.$spaces.text() === this.currentWord.join('')) {
-        this.gameOver('win');
+        this.gameStatus = 'win';
+        this.gameOver();
       }
     }
   },
@@ -60,21 +60,21 @@ var Game = {
     $apples.removeClass();
     $apples.addClass('guess_' + String(this.incorrectGuesses));
   },
-  gameOver: function(result) {
-    var msg = (result === 'win') ? 'You won!!' : 'You lost';
-    this.displayMessage(msg)
-    $('body').addClass(result);
+  gameOver: function() {
+    var msg = (this.gameStatus === 'win') ? 'You won!!' : 'You lost.';
+    this.displayMessage(msg);
+    $('body').addClass(this.gameStatus);
     $('a').show();
   },
   displayMessage: function(msg) {
     $message.text(msg);
   },
   init: function() {
+    this.gameStatus = 'active',
     this.currentWord = randomWord().split('') || this.displayMessage("Sorry, I've run out of words."),
     this.createBlanks();
     $guesses.find('span').remove();
     $apples.removeClass();
-    console.log(this.currentWord);
     $('a').hide();
     $message.text('');
     $('body').removeClass();
@@ -89,8 +89,9 @@ $(document).keypress(function(e){
   if (code > 122 || code < 97) return;
   
   var letter = String.fromCharCode(code);
-  console.log(letter);
-  myGame.guess(letter);
+  if (myGame.gameStatus === 'active') {
+    myGame.guess(letter);
+  }
 });
 
 $('a').on('click', function(e){
