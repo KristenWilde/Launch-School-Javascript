@@ -9,17 +9,27 @@
 <body>
   <h1>My Blog</h1>
   <main></main>
-  <script id="post" type="text/x-handlebars">
-    <article>
-      <h1>{{title}}</h1>
-      <p><time>Posted on {{published}}</time></p>
-      {{{body}}}
-      <footer>
-        {{#each tags}}
-          <a href="#">{{.}}</a>
-        {{/each}}
-      <footer>
-    </article>
+  <script id="posts" type="text/x-handlebars">
+    {{#each posts}}
+      <article>
+        <h1>{{title}}</h1>
+        <p><time>Posted on {{published}}</time></p>
+        {{{body}}}
+        <footer>
+          {{#if tags}}
+            {{> tags}}
+          {{else}} 
+            <p>Not tagged.</p> 
+          {{/if}}
+        <footer>
+      </article>
+    {{/each}}
+  </script>
+
+  <script id="tags" type="text/x-handlebars">
+    {{#each tags}}
+      <a href="#">{{.}}</a>
+    {{/each}}
   </script>
 
   <script src="blog.js"></script>
