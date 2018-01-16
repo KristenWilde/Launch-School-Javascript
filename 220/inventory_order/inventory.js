@@ -7,10 +7,6 @@ var inventory;
     setDate: function() {
       $('#order_date').text((new Date).toUTCString());
     },
-    cacheTemplate: function() {
-      var $inv_template = $('#inventory_item').remove();
-      this.template = $inv_template.html();
-    },
     bindEvents: function() {
       $('#add_item').on('click', this.newItem.bind(this));
       $('#inventory').on('click', '.delete', this.deleteItem.bind(this));
@@ -30,8 +26,7 @@ var inventory;
     newItem: function(e) {
       e.preventDefault();
       var item = this.add();
-      var $item = $(this.template.replace(/ID/g, item.id));
-      $('#inventory').append($item);
+      $('#inventory').append(this.itemTemplate(item));
     },
     deleteItem: function(e) {
       e.preventDefault();
@@ -61,7 +56,7 @@ var inventory;
     },
     init: function() {
       this.setDate();
-      this.cacheTemplate();
+      this.itemTemplate = Handlebars.compile($('#inventory_item').html());
       this.bindEvents();
     },
   };
