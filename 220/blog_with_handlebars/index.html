@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.5/handlebars.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+</head>
+<body>
+  <h1>My Blog</h1>
+  <main></main>
+  <script id="post" type="text/x-handlebars">
+    <article>
+      <h1>{{title}}</h1>
+      <p><time>Posted on {{published}}</time></p>
+      {{{body}}}
+      <footer>
+        {{#each tags}}
+          <a href="#">{{.}}</a>
+        {{/each}}
+      <footer>
+    </article>
+  </script>
+
+  <script src="blog.js"></script>
+</body>
+</html>
