@@ -1,0 +1,54 @@
+
+body {
+  background-color: rgb(54, 47, 86);
+  font-size: 20px;
+  overflow: scroll;
+}
+
+header {
+  width: 70%;
+  margin: 0 auto;
+  text-align: center;
+  padding: 30px;
+  color: #fff;
+}
+
+h1 {
+  font-size: 28px;
+  padding-bottom: 10px;
+}
+
+header > p {
+}
+
+main {
+  margin:0 auto;
+  width: 94%;
+}
+
+figure {
+  position: relative;
+  display: inline-block;
+  width: 25%;
+  text-align: center;
+  vertical-align: top;
+  margin-bottom: 40px;
+}
+
+img {
+  width: 92%;
+  border: 5px solid #fff;
+  box-sizing: border-box;
+}
+
+figcaption {
+  display: none;
+  position: absolute;
+  top: 100%;
+  background: rgba(0, 0, 0, .8);
+  padding: 12px;
+  z-index: 2;
+  color: #fff;
+  margin: 0, -10px, 0, -10px;
+}
+
