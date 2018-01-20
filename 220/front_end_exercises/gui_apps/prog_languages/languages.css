@@ -1,0 +1,30 @@
+body {
+  background: #ace;
+  text-align: center;
+}
+
+main {
+  text-align: left;
+  background-color: #fff;
+  max-width: 800px;
+  margin: 30px auto;
+  padding: 30px;
+}
+
+section {
+  overflow: auto;
+  border-bottom: 1px solid #ace;
+  padding-bottom: 15px;
+}
+
+.description {
+  float: right;
+  width: 75%;
+  padding-left: 25px;
+}
+
+h2 {
+  margin: 10px 0;
+}
+
+

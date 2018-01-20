@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Programming Languages</title>
+  <link rel="stylesheet" href="languages.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.5/handlebars.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+  <script src="app.js"></script>
+</head>
+<body>
+  <h1>Programming Languages</h1>
+  <p>Info from https://www.computerscience.org/resources/computer-programming-languages/</p>
+  <main>
+    <script id="template" type="text/x-handlebars">
+      {{#each .}}
+        <section>
+          <div class="description">{{{descrip}}}</div>
+          <h2>{{name}}</h2>
+          <button>Show More</button>
+        </section>
+      {{/each}}
+    </script>
+  </main>
+</body>
+</html>
