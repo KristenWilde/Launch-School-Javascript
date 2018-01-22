@@ -11,12 +11,12 @@ var languages = [{
 }, {
   name: 'Java',
   descrip: `<p>Java is a general-purpose, object-oriented, high-level programming language with several features that make it ideal for web-based development.</p>
-  <p>Java is used to develop enterprise-level applications for video games and mobile apps, as well as to create web-based applications with JSP (Java Server Pages). When used online, Java allows applets to be downloaded and used through a browser, which can then perform a function not normally available.</p>
+  <p>Java is used to develop enterprise-level applications for <span>video games and mobile apps, as well as to create web-based applications with JSP (Java Server Pages). When used online, Java allows applets to be downloaded and used through a browser, which can then perform a function not normally available.</p>
   <ul>
     <li>Application portability</li>
     <li>Robust and interpreted language</li>
     <li>Extensive network library</li>
-  </ul>`,
+  </ul></span>`,
 }, {
   name: 'Ruby',
   descrip: `<p>Ruby is an open-sourced, object-oriented scripting language that can be used independently or as part of the Ruby on Rails web framework.</p>
@@ -46,7 +46,7 @@ var languages = [{
   </ul>`,
 }, {
   name: 'C Language',
-  descrip: `<p>C Language is a structure-oriented, middle-level programming language mostly used to develop low-level applications.</p>
+  descrip: `<p>C Language is a structure-oriented, middle-level programming language mostly used to develop low-level applications.       </p>
   <p>C Language is used to develop systems applications that are integrated into operating systems such as Windows, UNIX and Linux, as well as embedded softwares. Applications include graphics packages, word processors, spreadsheets, operating system development, database systems, compilers and assemblers, network drivers and interpreters.</p>
   <ul>
     <li>Simple to learn; there are only 32 keywords to master</li>
@@ -114,24 +114,22 @@ $(function() {
   $('main').append(template(languages));
 
   $('.description').each(function() {
-    var $div = $(this);
-    console.log($(this));
-    $div.data.fullContent = $div.html();
-    $div.data.snippet = $div.html().slice(0, 123) + ' . . .</p>';
-    $div.html($div.data.snippet);
-    console.log($(this).data.fullContent);
+    var fullContent = this.innerHTML;
+    var snippet = fullContent.slice(0, 123) + ' . . .</p>';
+    $(this).data('fullContent', fullContent);
+    $(this).data('snippet', snippet);
+    this.innerHTML = snippet;
   });
 
   $('main').on('click', 'button', function(e) {
     var $button = $(this);
-    var $div = $button.parent();
-    element = $div;
-    console.log()
-    if ($button.text() === 'Show More'){
-      $div.html($div.data.fullContent);
+    var $div = $button.parent().find('.description');
+  
+    if ($button.text() === 'Show More') {
+      $div.html($div.data('fullContent'));
       $button.text('Show Less');
     } else {
-      $div.html($div.data.snippet);
+      $div.html($div.data('snippet'));
       $button.text('Show More');
     }
   });
