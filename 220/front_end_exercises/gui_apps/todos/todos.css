@@ -22,12 +22,15 @@ li {
   position: relative;
 }
 
-button.delete {
-  border: none;
-  font-size: 38px;
+.delete {
+  font-size: 34px;
   color: red;
   float: right;
-  line-height: .4;
+  line-height: .6;
+}
+
+.delete:hover {
+  font-size: 38px;
 }
 
 #overlay {
