@@ -55,7 +55,7 @@ button.delete {
   z-index: 3;
 }
 
-button.confirm {
+#yes, #no {
   position: relative;
   top: 80px;
   font: inherit;
