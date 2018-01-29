@@ -31,24 +31,30 @@ var optionsTemplate = Handlebars.compile($('#options_template').html());
 
 var app = {
   init: function() {
-    this.displayOptions()
+    this.displayAllOptions()
     this.displayCars();
     this.bindEvents();
   },
 
   bindEvents: function() {
-    $('#make').on('change', function(e) {
-      console.log($(this).val());
-      app.displayOptions($(this).val());
+    $('select').on('change', function(e) {
+      app.updateOtherFiltersFor($(this));
     });
 
     $('form').on('submit', function(e) {
       e.preventDefault();
       app.displayCars();
     });
+
+    $('form').on('reset', function(e) {
+      e.preventDefault();
+      $('select').val('Any');
+      app.displayAllOptions()
+      app.displayCars();
+    })
   },
 
-  filters: function() {
+  currentVals: function() {
     return {
       make: $('#make').val(), 
       model: $('#model').val(),
@@ -70,29 +76,37 @@ var app = {
     });
   },
 
-  displayCars: function() {
-    $('main').html(carsTemplate(app.filteredCars(app.filters())));
+  displayCars: function() { 
+    $('main').html(carsTemplate(app.filteredCars(app.currentVals())));
   },
 
-  displayOptions: function(make) {
-    var makeSelector = make ? '#make' : null;
-    var criteria = make ? { make: make } : null;
-
-    $('select').not(makeSelector).each(function() {
-      var prop = this.id
-      $(this).html(optionsTemplate([{ filterName : 'Any'} ]));
-      $(this).append(optionsTemplate(app.getOptions(prop, criteria)));
+  displayAllOptions: function() {
+    $('select').each(function() {
+      app.renderOptionsFor($(this));
     });
   },
 
-  getOptions: function(prop, optionalCriteria) {
-    var criteria = optionalCriteria || app.filters();
-
-    var options =  _(_(app.filteredCars(criteria)).pluck(prop)).uniq();
+  getOptions: function(property) {
+    var carSet = app.filteredCars(app.currentVals());
+    var options =  _(_(carSet).pluck(property)).uniq();
     return options.map(function(opt) {
       return { filterName: opt }
     })
   },
+
+  renderOptionsFor: function($select) {
+    var prop = $select.attr('id');
+      $select.html(optionsTemplate([{ filterName : 'Any'} ]));
+      $select.append(optionsTemplate(app.getOptions(prop)));
+  },
+
+  updateOtherFiltersFor: function($currentSelect) {
+    $('select').not($currentSelect).each(function() {
+      if ($(this).val() === 'Any') {
+        app.renderOptionsFor($(this));
+      }
+    });
+  }
 }
 
 app.init();
