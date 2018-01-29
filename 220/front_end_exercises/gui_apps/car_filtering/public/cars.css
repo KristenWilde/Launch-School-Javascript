@@ -1,0 +1,48 @@
+body {
+  padding: 0;
+  margin: 0;
+}
+
+h2, p {
+  font-size: 1em;
+  padding: 0;
+  margin: 3px;
+}
+
+figure {
+  height: 150px;
+  margin: 0;
+}
+
+header {
+  background: rgb(237, 152, 0);
+  color: #fff;
+  padding: 25px;
+}
+
+select, input, button {
+  height: 30px;
+  width: 100px;
+  background: rgb(237, 152, 0);
+  color: #fff;
+  border: 1px solid #fff;
+  margin: 5px 10px 5px 3px;
+  border-radius: 5px;
+  font-size: 13px;
+}
+
+input, button {
+  width: 60px;
+}
+
+.car {
+  width: 230px;
+  height: 270px;
+  box-sizing: border-box;
+  padding: 30px 0 0 30px;
+  float: left;
+}
+
+.car img {
+  width: 100%;
+}

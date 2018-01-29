@@ -69,11 +69,7 @@ var _ = function(obj) {
       return result;
     },
     pluck: function(property) {
-      var result = [];
-      obj.forEach(function(item) {
-        result.push(item[property]);
-      });
-      return result;
+      return obj.map(item => item[property])
     },
     keys: function() {
       return Object.keys(obj);

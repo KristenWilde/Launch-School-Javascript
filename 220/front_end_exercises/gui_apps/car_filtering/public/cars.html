@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Car Store</title>
+  <link rel="stylesheet" href="cars.css">
+  <link rel="shortcut icon" href="images/favicon.ico">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.5/handlebars.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+</head>
+<body>
+  <header>
+    <h1>Car Store</h1>
+    <form>
+      <label>Make
+        <select name="make" id="make">
+          <option>Any</option>
+        </select>
+      </label>
+      <label>Model
+        <select name="model" id="model">
+          <option>Any</option>
+        </select>
+      </label>
+      <label>Price
+        <select name="price" id="price">
+          <option>Any</option>
+        </select>
+      </label>
+      <label>Year
+        <select name="year" id="year">
+          <option>Any</option>
+        </select>
+      </label>
+      <input type="submit" value="Filter">
+    </form>
+  </header>
+  <main></main>
+  <script type="text/x-handlebars" id="options_template">
+    {{#each .}}
+      <option>{{filterName}}</option>
+    {{/each}}
+  </script>
+  <script type="text/x-handlebars" id="car_template">
+    {{#each .}}
+      <div class="car">
+        <figure>
+          <img src={{image}} alt="car image">
+        </figure>
+        <h2>{{make}} {{model}}</h2>
+        <p>Year: {{year}}</p>
+        <p>Price: {{price}}</p>
+        <button class="buy">Buy</button>
+      </div>
+    {{/each}}
+  </script>
+  <script src="cars.js"></script>
+</body>
+</html>
