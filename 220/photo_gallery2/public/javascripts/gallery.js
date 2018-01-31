@@ -37,6 +37,37 @@ $(function() {
     bind: function() {
       this.$slideshow.find('.prev').on('click', this.prevSlide.bind(this));
       this.$slideshow.find('.next').on('click', this.nextSlide.bind(this));
+      $('section > header').on('click', '.actions a', this.likesFavorites.bind(this));
+      $('#comments form').on('submit', this.submitComment.bind(this));
+    },
+    submitComment: function(e) {
+      e.preventDefault();
+      var $form = $(e.target);
+      var id = $('figure:visible').attr('data-id');
+      $.ajax({
+        url: $form.attr('action'),
+        type: 'post',
+        data: $form.serialize(),
+        success: function(json) {
+          getCommentsFor(id);
+          $('textarea').add('[type=email]').add('[type=text]').val('');
+        }
+      })
+    },
+    likesFavorites: function(e) {
+      e.preventDefault();
+      var $e = $(e.target);
+
+      $.ajax({
+        url: $e.attr('href'),
+        type: 'POST',
+        data: 'photo_id=' + $e.attr('data-id'),  
+        success: function(json) {
+          $e.text(function(i, txt) {
+            return txt.replace(/[0-9]+/, json.total);
+          })
+        }
+      })
     },
     nextSlide: function(e) {
         e.preventDefault();
@@ -50,6 +81,7 @@ $(function() {
         this.renderPhotoContent($next.attr('data-id'));
     },
     renderPhotoContent: function(id) {
+      $('[name=photo_id]').val(id);
       renderPhotoInformation(id);
       getCommentsFor(id);
     },
@@ -63,9 +95,8 @@ $(function() {
     success: function(json) {
       photos = json;
       renderPhotos()
-      photoIdx = 0;
       renderPhotoInformation(photos[0].id);
-      getCommentsFor(photoId());
+      getCommentsFor(photos[0].id);
       slideshow.init();
     }
   })
