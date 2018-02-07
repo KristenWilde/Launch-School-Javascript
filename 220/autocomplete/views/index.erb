@@ -14,5 +14,11 @@
         <input name="country">
       </p>
     </div>
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+        console.log('loaded');
+        new Autocomplete(document.querySelector('input'), '/countries?matching=');
+      });
+    </script>
   </body>
 </html>
