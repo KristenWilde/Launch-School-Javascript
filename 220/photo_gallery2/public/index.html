@@ -102,5 +102,20 @@
         </article>
       </li>
     </script>
+
+    <script> // Testing Cross-Origin-Resource-Sharing
+
+function getAreasOfContinents() {
+  var xhr = new XMLHttpRequest();
+  xhr.addEventListener('load', function() {
+    console.log('Areas of Continents request complete.')
+    console.log(xhr.response);
+  })
+  xhr.responseType = 'json';
+  xhr.open('GET', 'http://localhost:4567/areas_of_continents');
+  xhr.send();
+}
+
+    </script>
   </body>
 </html>
