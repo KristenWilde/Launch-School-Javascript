@@ -1,0 +1,57 @@
+
+h1 {
+  font-size: 2rem;
+  margin: 50px auto 0;
+  display: block;
+  width: 200px;
+}
+
+fieldset {
+  border: 0;
+}
+
+main {
+  max-width: 500px;
+  padding: 40px;
+  background-color: #eee;
+  border-radius: 5px;
+  margin: 50px auto;
+  box-sizing: border-box;
+}
+
+input {
+  font: 18px Arial, Helvetica, sans-serif;
+  width: 100%;
+  /*display: block;*/
+}
+
+input, button {
+  padding: 8px;
+  border: 1px solid #bbb;
+  border-radius: 4px;
+  box-sizing: border-box;
+  margin-bottom: 20px;
+}
+
+button {
+  font: 18px Arial, Helvetica, sans-serif;
+  width: 120px;
+  background: linear-gradient(#fff, #dedede);
+}
+
+label {
+  display: block;
+  margin-bottom: 3px;
+}
+
+.error, .form_error {
+  color: red;
+}
+
+.error {
+  float: right;
+}
+
+input.invalid {
+  border: 1px solid red;
+}

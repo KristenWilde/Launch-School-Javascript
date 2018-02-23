@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Sign up Form</title>
+  <link rel="stylesheet" href="reset.css">
+  <link rel="stylesheet" href="sign_up.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+  <script src="sign_up.js"></script>
+</head>
+<body>
+  <h1>Sign Up Form</h1>
+  <main>
+    <form action="#" method="post" novalidate>
+      <p class="form_error"></p>
+      <fieldset>
+        <label for="first_name">First Name * 
+          <span class="error" aria-live="polite"></span></label>
+        <input type="text" id="first_name" name="first_name" pattern="[a-zA-Z]*[ \-']*[a-zA-Z]+" required>
+        <label for="last_name">Last Name * 
+          <span class="error" aria-live="polite"></span></label>
+        <input type="text" id="last_name" name="last_name" pattern="[a-zA-Z]*[ \-']*[a-zA-Z]+" required>
+        <label for="email">Email * 
+          <span class="error" aria-live="polite"></span></label>
+        <input type="email" id="email" name="email" pattern=".+@.+" placeholder="someone@example.com" required>
+        <label for="password">Password * 
+          <span class="error" aria-live="polite"></span></label>
+        <input type="password" id="password" name="password" minlength="10" required>
+        <label for="phone">Phone Number 
+          <span class="error" aria-live="polite"></span></label>
+        <input type="text" id="phone" name="phone" pattern="\d{3}-\d{3}-\d{4}" placeholder="123-123-1234">
+        <button type="submit">Sign Up</button>
+      </fieldset>
+    </form>
+  </main>
+</body>
+</html>
