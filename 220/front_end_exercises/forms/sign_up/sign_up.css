@@ -39,7 +39,7 @@ button {
   background: linear-gradient(#fff, #dedede);
 }
 
-label {
+label, p {
   display: block;
   margin-bottom: 3px;
 }
