@@ -5,6 +5,7 @@ class FormValidation {
     this.listenForInputs();
     this.listenForSubmit();
     this.listenForKeypress();
+    this.listenForKeyupOnCreditCard();
   }
 
   listenForInputs() {
@@ -45,12 +46,19 @@ class FormValidation {
         pattern = /[\d-]/;
       } else if (el.getAttribute('name') == 'card') {
         pattern = /\d/;
-        if (el.value.length >= 4) {
-          e.preventDefault();
-        }
       }
       if (!key.match(pattern)) {
         e.preventDefault();
+      }
+    });
+  }
+
+  listenForKeyupOnCreditCard() {
+    $('.go-to-next').on('keyup', (e) => {
+      const el = e.target;
+      const FIELD_LENGTH = 4;
+      if (el.value.length == FIELD_LENGTH) {
+        $(el.nextElementSibling).focus();
       }
     });
   }
