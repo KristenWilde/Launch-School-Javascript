@@ -4,15 +4,18 @@ class FormValidation {
     this.$form = $('form');
     this.listenForInputs();
     this.listenForSubmit();
+    this.listenForKeypress();
   }
 
   listenForInputs() {
     this.$form.on('blur', 'input', (e) => { // 'this' is the FormValidation object
       const el = e.target;
+      if (el.name === 'card') {
+        return;
+      }
       this.displayError(el);
       this.displayBorder(el);
       if (!this.anyInvalid()) { 
-        console.log('all valid!');
         this.displayFormError(''); 
       }
     });
@@ -30,6 +33,27 @@ class FormValidation {
       }
     });
   };
+
+  listenForKeypress() {
+    this.$form.on('keypress', 'input', (e) => {
+      const el = e.target;
+      const key = e.key;
+      let pattern = /./;
+      if (el.id == 'first_name' || el.id == 'last_name') {
+        pattern = /[A-Za-z '\-]+/;
+      } else if (el.id == 'phone') {
+        pattern = /[\d-]/;
+      } else if (el.getAttribute('name') == 'card') {
+        pattern = /\d/;
+        if (el.value.length >= 4) {
+          e.preventDefault();
+        }
+      }
+      if (!key.match(pattern)) {
+        e.preventDefault();
+      }
+    });
+  }
 
   anyInvalid() {
     return $('input:invalid').length > 0;

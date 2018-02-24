@@ -37,6 +37,7 @@ button {
   font: 18px Arial, Helvetica, sans-serif;
   width: 120px;
   background: linear-gradient(#fff, #dedede);
+  display: block;
 }
 
 label, p {
@@ -54,4 +55,9 @@ label, p {
 
 input.invalid {
   border: 1px solid red;
+}
+
+input[name="card"] {
+  /*display: inline-block;*/
+  width: 60px;
 }

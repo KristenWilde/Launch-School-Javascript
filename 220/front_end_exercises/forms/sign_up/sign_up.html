@@ -17,10 +17,10 @@
       <fieldset>
         <label for="first_name">First Name * 
           <span class="error" aria-live="polite"></span></label>
-        <input type="text" id="first_name" name="first_name" pattern="[a-zA-Z]*[ \-']*[a-zA-Z]+" required>
+        <input type="text" id="first_name" name="first_name" pattern="[a-zA-Z\s\-']+" required>
         <label for="last_name">Last Name * 
           <span class="error" aria-live="polite"></span></label>
-        <input type="text" id="last_name" name="last_name" pattern="[a-zA-Z]*[ \-']*[a-zA-Z]+" required>
+        <input type="text" id="last_name" name="last_name" pattern="[a-zA-Z\s\-']+" required>
         <label for="email">Email * 
           <span class="error" aria-live="polite"></span></label>
         <input type="email" id="email" name="email" pattern=".+@.+" placeholder="someone@example.com" required>
@@ -30,6 +30,11 @@
         <label for="phone">Phone Number 
           <span class="error" aria-live="polite"></span></label>
         <input type="text" id="phone" name="phone" pattern="\d{3}-\d{3}-\d{4}" placeholder="123-123-1234">
+        <label for="card1">Credit Card</label>
+        <input type="text" name='card' maxlength="4" id="card1"> -
+        <input type="text" name='card' maxlength="4"> -
+        <input type="text" name='card' maxlength="4"> -
+        <input type="text" name='card' maxlength="4">
         <button type="submit">Sign Up</button>
       </fieldset>
     </form>
