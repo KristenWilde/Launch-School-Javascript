@@ -104,7 +104,7 @@ class FormValidation {
     })
   }
 
-  serialize() {
+  fillDataObj() {
     this.initializeDataObj();
     this.$fields.each((idx, el) => {
       this.data[el.name] += el.value;
@@ -113,6 +113,7 @@ class FormValidation {
   }
 
   dataString() {
+    this.fillDataObj();
     let pairs = Object.keys(this.data).map((name) => {
       return encodeURIComponent(name) + '=' + encodeURIComponent(this.data[name])
     })
@@ -120,11 +121,10 @@ class FormValidation {
   }
 
   submit() {
-    this.serialize();
     $('#submitted_data').text(this.dataString());
   }
 
-  fill() {                             // only for testing
+  fill() {                             // for testing
     $('#first_name').val('Kristen');
     $('#last_name').val('Wilde');
     $('#email').val('hey@you');
