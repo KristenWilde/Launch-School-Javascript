@@ -24,13 +24,15 @@ class FormValidation {
   
   listenForSubmit() {
     this.$form.on('submit', (e) => {
+      e.preventDefault();
       if (this.anyInvalid()) {
-        e.preventDefault();
         this.displayFormError("Form cannot be submitted until errors are corrected.");
         $('input:invalid').each((idx, el) => {
           this.displayError(el);
           this.displayBorder(el);
         })
+      } else {
+        this.submit();
       }
     });
   };
@@ -94,8 +96,43 @@ class FormValidation {
   displayBorder(el) {
     $(el).toggleClass('invalid', !el.validity.valid);
   }
-}
 
-$(() => {
-  new FormValidation();
-});
+  initializeDataObj() {
+    this.data = {};
+    this.$fields.each((i, el) => {
+      this.data[el.name] = "";
+    })
+  }
+
+  serialize() {
+    this.initializeDataObj();
+    this.$fields.each((idx, el) => {
+      this.data[el.name] += el.value;
+    });
+    return this.data;
+  }
+
+  dataString() {
+    let pairs = Object.keys(this.data).map((name) => {
+      return encodeURIComponent(name) + '=' + encodeURIComponent(this.data[name])
+    })
+    return pairs.join('&');
+  }
+
+  submit() {
+    this.serialize();
+    $('#submitted_data').text(this.dataString());
+  }
+
+  fill() {                             // only for testing
+    $('#first_name').val('Kristen');
+    $('#last_name').val('Wilde');
+    $('#email').val('hey@you');
+    $('#password').val('1234567890');
+    $('#phone').val('999-888-7777');
+    $('[name=card]').eq(0).val('1111');
+    $('[name=card]').eq(1).val('2222');
+    $('[name=card]').eq(2).val('3333');
+    $('[name=card]').eq(3).val('4444');
+  }
+}
